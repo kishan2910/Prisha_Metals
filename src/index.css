@@ -1,0 +1,27 @@
+@theme {
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "Montserrat", sans-serif;
+  
+  --color-gold: #C5A059;
+  --color-brass: #B5A642;
+  --color-copper: #B87333;
+  --color-paper: #F5F2ED;
+  --color-ink: #1A1A1A;
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+.serif {
+  font-family: var(--font-serif);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
