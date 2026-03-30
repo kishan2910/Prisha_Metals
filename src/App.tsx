@@ -16,8 +16,8 @@ const IMAGE_PATHS = {
   homeHero: '/assets/images/home/hero.svg',
   productsHero: '/assets/images/products/cover.svg',
   designHero: '/assets/images/design/cover.svg',
-  aboutHero: '/assets/images/about/cover.svg',
-  contactHero: '/assets/images/contact/cover.svg',
+  aboutHero: '/assets/images/about/about_banner_final.jpg',
+  contactHero: '/assets/images/contact/contact.jpg',
 };
 
 const productCards = [
