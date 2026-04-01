@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { Mail, MapPin, Menu, Phone, X } from 'lucide-react';
 import { motion } from 'motion/react';
 
@@ -97,6 +97,15 @@ const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
 ];
 
+const toSlug = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
+const getCategoryBySlug = (categorySlug: string) => PRODUCT_CATEGORIES.find((category) => toSlug(category.name) === categorySlug);
+
 function ScrollToTop() {
   const location = useLocation();
   useEffect(() => window.scrollTo(0, 0), [location.pathname]);
@@ -105,6 +114,7 @@ function ScrollToTop() {
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
@@ -117,20 +127,42 @@ function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-white">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 md:px-10">
-        <Link to="/" className="flex min-w-0 max-w-[260px] items-center sm:max-w-[340px] md:max-w-[420px]" aria-label="Prisha Metals home">
+      <div className="flex h-20 w-full items-center justify-between gap-4 px-3 sm:px-4 md:px-6">
+        <Link to="/" className="flex min-w-0 max-w-[270px] items-center sm:max-w-[350px] md:max-w-[440px]" aria-label="Prisha Metals home">
           <img src={IMAGE_PATHS.logo} alt="Prisha Metals logo" className="h-11 w-full object-contain object-left sm:h-12 md:h-14" />
         </Link>
 
-        <nav className="hidden items-center gap-6 lg:flex">
+        <nav className="ml-auto hidden items-center gap-7 xl:gap-8 lg:flex">
           {navLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={`text-xs font-semibold tracking-[0.2em] transition-colors ${location.pathname === link.to ? 'text-gold' : 'hover:text-gold'}`}
-            >
-              {link.label}
-            </Link>
+            link.label === 'PRODUCTS' ? (
+              <div key={link.to} className="group relative">
+                <Link
+                  to={link.to}
+                  className={`text-xs font-semibold tracking-[0.2em] transition-colors ${location.pathname.startsWith('/products') ? 'text-gold' : 'hover:text-gold'}`}
+                >
+                  {link.label}
+                </Link>
+                <div className="invisible absolute left-0 top-full z-50 mt-3 w-[340px] rounded-sm border border-ink/10 bg-white p-4 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+                  <div className="flex flex-col">
+                    {PRODUCT_CATEGORIES.map((category) => (
+                      <div key={category.name} className="border-b border-ink/10 last:border-b-0">
+                        <Link to={`/products/${toSlug(category.name)}`} className="serif block py-2 text-lg hover:text-gold">
+                          {category.name}
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`text-xs font-semibold tracking-[0.2em] transition-colors ${location.pathname === link.to ? 'text-gold' : 'hover:text-gold'}`}
+              >
+                {link.label}
+              </Link>
+            )
           ))}
         </nav>
 
@@ -146,9 +178,43 @@ function Navbar() {
           </button>
           <div className="flex flex-col gap-7">
             {navLinks.map((link) => (
-              <Link key={link.to} to={link.to} className="serif text-4xl" onClick={() => setOpen(false)}>
-                {link.label}
-              </Link>
+              link.label === 'PRODUCTS' ? (
+                <div key={link.to} className="space-y-4">
+                  <button className="serif text-left text-4xl" onClick={() => setMobileProductsOpen((prev) => !prev)}>
+                    {link.label}
+                  </button>
+                  {mobileProductsOpen && (
+                    <div className="space-y-4 border-l border-ink/20 pl-4">
+                      <Link to="/products" className="block text-sm tracking-[0.15em] hover:text-gold" onClick={() => setOpen(false)}>
+                        VIEW ALL
+                      </Link>
+                      {PRODUCT_CATEGORIES.map((category) => (
+                        <div key={category.name} className="space-y-2">
+                          <Link to={`/products/${toSlug(category.name)}`} className="serif block text-2xl hover:text-gold" onClick={() => setOpen(false)}>
+                            {category.name}
+                          </Link>
+                          <div className="flex flex-wrap gap-2">
+                            {category.items.map((item) => (
+                              <Link
+                                key={item}
+                                to={`/products/${toSlug(category.name)}/${toSlug(item)}`}
+                                className="rounded-full border border-ink/20 px-2 py-1 text-[11px]"
+                                onClick={() => setOpen(false)}
+                              >
+                                {item}
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link key={link.to} to={link.to} className="serif text-4xl" onClick={() => setOpen(false)}>
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
         </div>
@@ -235,17 +301,84 @@ function ProductsPage() {
                 <div className="relative h-52 w-full overflow-hidden sm:h-64">
                   <img src={category.image} alt={category.name} className="h-full w-full object-cover transition duration-700 hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-ink/75 to-transparent" />
-                  <h3 className="serif absolute bottom-4 left-4 pr-3 text-2xl text-white sm:text-3xl">{category.name}</h3>
+                  <Link to={`/products/${toSlug(category.name)}`} className="serif absolute bottom-4 left-4 pr-3 text-2xl text-white hover:text-gold sm:text-3xl">
+                    {category.name}
+                  </Link>
                 </div>
                 <div className="flex flex-wrap gap-2 p-4 sm:p-5">
                   {category.items.map((item) => (
-                    <span key={item} className="rounded-full border border-ink/20 px-3 py-1.5 text-xs tracking-wide sm:text-sm">
+                    <Link
+                      key={item}
+                      to={`/products/${toSlug(category.name)}/${toSlug(item)}`}
+                      className="rounded-full border border-ink/20 px-3 py-1.5 text-xs tracking-wide transition-colors hover:border-gold hover:text-gold sm:text-sm"
+                    >
                       {item}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </motion.article>
             ))}
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function ProductCategoryPage() {
+  const { categorySlug, subSlug } = useParams();
+  const category = categorySlug ? getCategoryBySlug(categorySlug) : undefined;
+
+  if (!category) {
+    return (
+      <section className="px-4 py-24 sm:px-6 md:px-10">
+        <div className="mx-auto max-w-7xl">
+          <h1 className="serif text-4xl">Category Not Found</h1>
+          <p className="mt-4 opacity-70">Please select a category from Products menu.</p>
+        </div>
+      </section>
+    );
+  }
+
+  const selectedItem = subSlug ? category.items.find((item) => toSlug(item) === subSlug) : undefined;
+
+  return (
+    <>
+      <Hero
+        title={category.name}
+        subtitle={selectedItem ? selectedItem : 'Explore all subcategories and product lines in this category.'}
+        image={category.image}
+      />
+      <section className="px-4 py-16 sm:px-6 sm:py-20 md:px-10">
+        <div className="mx-auto max-w-7xl space-y-8">
+          <div className="flex flex-wrap gap-3">
+            <Link to="/products" className="rounded-full border border-ink/20 px-4 py-2 text-xs tracking-[0.15em] hover:border-gold hover:text-gold">
+              ALL CATEGORIES
+            </Link>
+            {PRODUCT_CATEGORIES.map((itemCategory) => (
+              <Link
+                key={itemCategory.name}
+                to={`/products/${toSlug(itemCategory.name)}`}
+                className={`rounded-full border px-4 py-2 text-xs tracking-[0.15em] ${itemCategory.name === category.name ? 'border-gold text-gold' : 'border-ink/20 hover:border-gold hover:text-gold'}`}
+              >
+                {itemCategory.name}
+              </Link>
+            ))}
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {category.items.map((item) => {
+              const active = selectedItem === item;
+              return (
+                <Link
+                  key={item}
+                  to={`/products/${toSlug(category.name)}/${toSlug(item)}`}
+                  className={`rounded-sm border p-5 transition-all ${active ? 'border-gold bg-gold/5' : 'border-ink/10 hover:-translate-y-1 hover:border-gold'}`}
+                >
+                  <p className="text-sm tracking-wide">{item}</p>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -321,6 +454,8 @@ export default function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:categorySlug" element={<ProductCategoryPage />} />
+            <Route path="/products/:categorySlug/:subSlug" element={<ProductCategoryPage />} />
             <Route path="/design" element={<DesignPage />} />
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
