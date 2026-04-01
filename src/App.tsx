@@ -12,12 +12,12 @@ type RevealSectionProps = {
 };
 
 const IMAGE_PATHS = {
-  logo: '/assets/images/logo/logo.svg',
+  logo: '/assets/images/logo/Gemini_Generated_Image_t9melit9melit9me.png',
   homeHero: '/assets/images/home/hero.svg',
   productsHero: '/assets/images/products/cover.svg',
   designHero: '/assets/images/design/cover.svg',
-  aboutHero: '/assets/images/about/about_banner_final.jpg',
-  contactHero: '/assets/images/contact/contact.jpg',
+  aboutHero: '/assets/images/about/PRISHA METALS (2).png',
+  contactHero: '/assets/images/contact/PRISHA METALS.png',
 };
 
 const productCards = [
