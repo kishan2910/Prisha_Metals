@@ -1,195 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
-import { Mail, MapPin, Menu, Phone, X } from 'lucide-react';
+import { Mail, MapPin, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
-import { PRODUCT_CATEGORIES, findItemBySlug, getCategoryBySlug, productImg, toSlug } from './productCatalog';
-
-type RevealSectionProps = {
-  title: string;
-  subtitle: string;
-  body: string;
-  image: string;
-  imageLeft?: boolean;
-};
-
-const IMAGE_PATHS = {
-  logo: '/assets/images/logo/logo.png',
-  homeHero: '/assets/images/home/hero.svg',
-  productsHero: productImg('brass components', 'allproducts-banner.jpg'),
-  designHero: '/assets/images/design/cover.svg',
-  aboutHero: '/assets/images/about/PRISHA METALS (2).png',
-  contactHero: '/assets/images/contact/PRISHA METALS.png',
-};
+import { Hero } from './components/Hero';
+import { Navbar } from './components/Navbar';
+import { RevealSection } from './components/RevealSection';
+import { SiteFooter } from './components/SiteFooter';
+import { HomePage } from './pages/HomePage';
+import { IMAGE_PATHS } from './imagePaths';
+import { PRODUCT_CATEGORIES, findItemBySlug, getCategoryBySlug, toSlug } from './productCatalog';
+import { SITE_CONTACT } from './siteContent';
 
 function ScrollToTop() {
   const location = useLocation();
   useEffect(() => window.scrollTo(0, 0), [location.pathname]);
   return null;
-}
-
-function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
-  const location = useLocation();
-
-  const navLinks = [
-    { to: '/', label: 'HOME' },
-    { to: '/products', label: 'PRODUCTS' },
-    { to: '/design', label: 'DESIGN' },
-    { to: '/about', label: 'ABOUT' },
-    { to: '/contact', label: 'CONTACT' },
-  ];
-
-  return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-white">
-      <div className="flex h-20 w-full items-center justify-between gap-4 px-3 sm:px-4 md:px-6">
-        <Link to="/" className="flex min-w-0 max-w-[270px] items-center sm:max-w-[350px] md:max-w-[440px]" aria-label="Prisha Metals home">
-          <img src={IMAGE_PATHS.logo} alt="Prisha Metals logo" className="h-11 w-full object-contain object-left sm:h-12 md:h-14" />
-        </Link>
-
-        <nav className="ml-auto hidden items-center gap-7 xl:gap-8 lg:flex">
-          {navLinks.map((link) => (
-            link.label === 'PRODUCTS' ? (
-              <div key={link.to} className="group relative">
-                <Link
-                  to={link.to}
-                  className={`text-xs font-semibold tracking-[0.2em] transition-colors ${location.pathname.startsWith('/products') ? 'text-gold' : 'hover:text-gold'}`}
-                >
-                  {link.label}
-                </Link>
-                <div className="invisible absolute left-0 top-full z-50 mt-3 w-[340px] rounded-sm border border-ink/10 bg-white p-4 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                  <div className="flex flex-col">
-                    {PRODUCT_CATEGORIES.map((category) => (
-                      <div key={category.name} className="border-b border-ink/10 last:border-b-0">
-                        <Link to={`/products/${toSlug(category.name)}`} className="serif block py-2 text-lg hover:text-gold">
-                          {category.name}
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={link.to}
-                to={link.to}
-                className={`text-xs font-semibold tracking-[0.2em] transition-colors ${location.pathname === link.to ? 'text-gold' : 'hover:text-gold'}`}
-              >
-                {link.label}
-              </Link>
-            )
-          ))}
-        </nav>
-
-        <button className="lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu">
-          <Menu size={24} />
-        </button>
-      </div>
-
-      {open && (
-        <div className="fixed inset-0 z-50 bg-white p-8 lg:hidden">
-          <button className="ml-auto mb-8 block" onClick={() => setOpen(false)} aria-label="Close menu">
-            <X size={28} />
-          </button>
-          <div className="flex flex-col gap-7">
-            {navLinks.map((link) => (
-              link.label === 'PRODUCTS' ? (
-                <div key={link.to} className="space-y-4">
-                  <button className="serif text-left text-4xl" onClick={() => setMobileProductsOpen((prev) => !prev)}>
-                    {link.label}
-                  </button>
-                  {mobileProductsOpen && (
-                    <div className="space-y-4 border-l border-ink/20 pl-4">
-                      <Link to="/products" className="block text-sm tracking-[0.15em] hover:text-gold" onClick={() => setOpen(false)}>
-                        VIEW ALL
-                      </Link>
-                      {PRODUCT_CATEGORIES.map((category) => (
-                        <div key={category.name} className="space-y-2">
-                          <Link to={`/products/${toSlug(category.name)}`} className="serif block text-2xl hover:text-gold" onClick={() => setOpen(false)}>
-                            {category.name}
-                          </Link>
-                          <div className="flex flex-wrap gap-2">
-                            {category.items.map((item) => (
-                              <Link
-                                key={item.name}
-                                to={`/products/${toSlug(category.name)}/${toSlug(item.name)}`}
-                                className="rounded-full border border-ink/20 px-2 py-1 text-[11px]"
-                                onClick={() => setOpen(false)}
-                              >
-                                {item.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link key={link.to} to={link.to} className="serif text-4xl" onClick={() => setOpen(false)}>
-                  {link.label}
-                </Link>
-              )
-            ))}
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
-
-function Hero({ title, subtitle, image }: { title: string; subtitle: string; image: string }) {
-  return (
-    <section className="relative flex min-h-[calc(100vh-80px)] items-center overflow-hidden px-4 pb-10 pt-28 sm:px-6 md:px-10">
-      <img src={image} alt={title} className="absolute inset-0 h-full w-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/45 to-ink/15" />
-      <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }} className="relative z-10 mx-auto w-full max-w-7xl">
-        <p className="mb-4 text-xs tracking-[0.35em] text-gold">ENGINEERED FOR EXCELLENCE</p>
-        <h1 className="serif mb-5 max-w-4xl text-4xl font-light leading-tight text-white sm:text-5xl md:text-7xl">{title}</h1>
-        <p className="max-w-xl text-sm text-white/90 sm:text-base md:text-lg">{subtitle}</p>
-      </motion.div>
-    </section>
-  );
-}
-
-function RevealSection({ title, subtitle, body, image, imageLeft = true }: RevealSectionProps) {
-  return (
-    <section className="px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 md:gap-14 lg:grid-cols-2">
-        <motion.div
-          initial={{ opacity: 0, x: imageLeft ? -70 : 70 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.28 }}
-          transition={{ duration: 0.75 }}
-          className={imageLeft ? 'order-1' : 'order-2 lg:order-1'}
-        >
-          <img src={image} alt={title} className="h-[280px] w-full rounded-sm object-cover shadow-2xl shadow-ink/20 sm:h-[360px] lg:h-[430px]" />
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: imageLeft ? 70 : -70 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.28 }}
-          transition={{ duration: 0.75, delay: 0.08 }}
-          className={imageLeft ? 'order-2' : 'order-1 lg:order-2'}
-        >
-          <p className="mb-3 text-xs tracking-[0.35em] text-gold">{subtitle}</p>
-          <h2 className="serif mb-4 text-3xl sm:text-4xl md:text-5xl">{title}</h2>
-          <p className="max-w-xl text-sm leading-relaxed opacity-75 sm:text-base">{body}</p>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-function HomePage() {
-  return (
-    <>
-      <Hero title="Premium Metal Craftsmanship for Modern Spaces" subtitle="A luxury visual experience with responsive design and smooth animations for every device." image={IMAGE_PATHS.homeHero} />
-      <RevealSection title="Elegant First Impression" subtitle="HOME" body="Your viewers always see clear branding because the top header stays in a white strip. Hero images automatically fit the browser width and height." image={IMAGE_PATHS.homeHero} />
-      <RevealSection title="Strong Product Storytelling" subtitle="HOME" body="Image and content reveal from opposite sides while scrolling to create a premium feel on phone, tablet, MacBook, and desktop." image={IMAGE_PATHS.productsHero} imageLeft={false} />
-    </>
-  );
 }
 
 function ProductsPage() {
@@ -355,9 +180,15 @@ function ContactPage() {
           <motion.div initial={{ opacity: 0, x: -35 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} className="space-y-7">
             <h2 className="serif text-3xl sm:text-4xl md:text-5xl">Let us build with you.</h2>
             <div className="space-y-4 text-sm sm:text-base">
-              <p className="flex items-center gap-3"><Phone size={16} className="text-gold" /> +91 8799051826</p>
-              <p className="flex items-center gap-3"><Mail size={16} className="text-gold" /> sales@prishametalint.com</p>
-              <p className="flex items-center gap-3"><MapPin size={16} className="text-gold" /> Plot No 7, R S No 42/P1, Sadguru Industrial Park, Kansumra Road, Jamnagar, Gujarat (India) 361 004</p>
+              <p className="flex items-center gap-3">
+                <Phone size={16} className="text-gold" /> {SITE_CONTACT.phone}
+              </p>
+              <p className="flex items-center gap-3">
+                <Mail size={16} className="text-gold" /> {SITE_CONTACT.email}
+              </p>
+              <p className="flex items-start gap-3">
+                <MapPin size={16} className="mt-1 text-gold" /> {SITE_CONTACT.fullAddress}
+              </p>
             </div>
           </motion.div>
           <motion.img
@@ -365,22 +196,12 @@ function ContactPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.25 }}
             src={IMAGE_PATHS.contactHero}
-            alt="Contact"
+            alt=""
             className="h-[280px] w-full rounded-sm object-cover sm:h-[360px]"
           />
         </div>
       </section>
     </>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="bg-ink px-4 py-10 text-paper sm:px-6 md:px-10">
-      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
-        <p className="text-xs tracking-[0.2em]">PRISHA METALS - ENGINEERED FOR EXCELLENCE</p>
-      </div>
-    </footer>
   );
 }
 
@@ -401,7 +222,7 @@ export default function App() {
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
         </main>
-        <Footer />
+        <SiteFooter />
       </div>
     </BrowserRouter>
   );
