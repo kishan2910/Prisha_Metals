@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { BrowserRouter, Link, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import { Mail, MapPin, Menu, Phone, X } from 'lucide-react';
 import { motion } from 'motion/react';
+import { PRODUCT_CATEGORIES, findItemBySlug, getCategoryBySlug, productImg, toSlug } from './productCatalog';
 
 type RevealSectionProps = {
   title: string;
@@ -11,100 +12,14 @@ type RevealSectionProps = {
   imageLeft?: boolean;
 };
 
-type ProductCategory = {
-  name: string;
-  image: string;
-  items: string[];
-};
-
 const IMAGE_PATHS = {
   logo: '/assets/images/logo/logo.png',
   homeHero: '/assets/images/home/hero.svg',
-  productsHero: '/assets/images/products/cover.svg',
+  productsHero: productImg('brass components', 'allproducts-banner.jpg'),
   designHero: '/assets/images/design/cover.svg',
   aboutHero: '/assets/images/about/PRISHA METALS (2).png',
   contactHero: '/assets/images/contact/PRISHA METALS.png',
 };
-
-const PRODUCT_CATEGORIES: ProductCategory[] = [
-  {
-    name: 'PREMIUM HANDLES',
-    image: '/assets/images/products/cover.svg',
-    items: ['Mortise handle', 'Cabinet Handle', 'Pull Handle'],
-  },
-  {
-    name: 'DOOR LOCKS',
-    image: '/assets/images/products/cover.svg',
-    items: ['Lock body', 'Cylinder Lock'],
-  },
-  {
-    name: 'CLASSIC HINGES',
-    image: '/assets/images/products/cover.svg',
-    items: [
-      'Brass hinge butt',
-      'Brass Hinge railway',
-      'brass hinge bearing',
-      'BRASS HINGE BEARING ITALIAN TIPS',
-      'brass hinge L locking',
-      'brass hinge L locking 90',
-      'brass hinge Z',
-      'brass overlay hinge',
-      'brass hinge W locking',
-      'brass hinge parlament',
-      'brass hinge spring',
-    ],
-  },
-  {
-    name: 'BATH FITTINGS',
-    image: '/assets/images/products/cover.svg',
-    items: [
-      'Piller Cock (Wash Basin)',
-      'Swan neck (Sink) Piller cock',
-      'bib cock',
-      'Multi flow hand SHOWER (including chain + abs hook)',
-      'Shower Head square',
-      'Toilet paper holder',
-      'Towel Rod',
-      'Towel Rack',
-      'Full Brass Liquid Dispenser',
-    ],
-  },
-  {
-    name: 'GLASS HARDWARES',
-    image: '/assets/images/products/cover.svg',
-    items: [
-      'Brass D Bracket',
-      'Brass F Bracket',
-      'Brass Square Bracket',
-      'Brass Mirror Screw',
-      'Brass Mirror Cap',
-    ],
-  },
-  {
-    name: 'LUXURY KNOBS',
-    image: '/assets/images/products/cover.svg',
-    items: ['Premium collection coming soon'],
-  },
-  {
-    name: 'DOOR VIEWERS',
-    image: '/assets/images/products/cover.svg',
-    items: ['Premium collection coming soon'],
-  },
-  {
-    name: 'PRESICION TURNED COMPONENTS',
-    image: '/assets/images/products/cover.svg',
-    items: ['Custom turned components as per drawing'],
-  },
-];
-
-const toSlug = (value: string) =>
-  value
-    .toLowerCase()
-    .replace(/&/g, 'and')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/(^-|-$)/g, '');
-
-const getCategoryBySlug = (categorySlug: string) => PRODUCT_CATEGORIES.find((category) => toSlug(category.name) === categorySlug);
 
 function ScrollToTop() {
   const location = useLocation();
@@ -196,12 +111,12 @@ function Navbar() {
                           <div className="flex flex-wrap gap-2">
                             {category.items.map((item) => (
                               <Link
-                                key={item}
-                                to={`/products/${toSlug(category.name)}/${toSlug(item)}`}
+                                key={item.name}
+                                to={`/products/${toSlug(category.name)}/${toSlug(item.name)}`}
                                 className="rounded-full border border-ink/20 px-2 py-1 text-[11px]"
                                 onClick={() => setOpen(false)}
                               >
-                                {item}
+                                {item.name}
                               </Link>
                             ))}
                           </div>
@@ -280,7 +195,7 @@ function HomePage() {
 function ProductsPage() {
   return (
     <>
-      <Hero title="Product Categories" subtitle="All categories are structured and ready. Keep dummy images now and replace with your originals later." image={IMAGE_PATHS.productsHero} />
+      <Hero title="Product Categories" subtitle="Browse every category and subcategory with full product photography." image={IMAGE_PATHS.productsHero} />
       <section className="px-4 py-16 sm:px-6 sm:py-20 md:px-10">
         <div className="mx-auto max-w-7xl space-y-10">
           <div>
@@ -308,11 +223,11 @@ function ProductsPage() {
                 <div className="flex flex-wrap gap-2 p-4 sm:p-5">
                   {category.items.map((item) => (
                     <Link
-                      key={item}
-                      to={`/products/${toSlug(category.name)}/${toSlug(item)}`}
+                      key={item.name}
+                      to={`/products/${toSlug(category.name)}/${toSlug(item.name)}`}
                       className="rounded-full border border-ink/20 px-3 py-1.5 text-xs tracking-wide transition-colors hover:border-gold hover:text-gold sm:text-sm"
                     >
-                      {item}
+                      {item.name}
                     </Link>
                   ))}
                 </div>
@@ -340,14 +255,15 @@ function ProductCategoryPage() {
     );
   }
 
-  const selectedItem = subSlug ? category.items.find((item) => toSlug(item) === subSlug) : undefined;
+  const selectedItem = findItemBySlug(category, subSlug);
+  const heroImage = selectedItem?.images[0] ?? category.image;
 
   return (
     <>
       <Hero
         title={category.name}
-        subtitle={selectedItem ? selectedItem : 'Explore all subcategories and product lines in this category.'}
-        image={category.image}
+        subtitle={selectedItem ? selectedItem.name : 'Explore all subcategories and product lines in this category.'}
+        image={heroImage}
       />
       <section className="px-4 py-16 sm:px-6 sm:py-20 md:px-10">
         <div className="mx-auto max-w-7xl space-y-8">
@@ -368,18 +284,43 @@ function ProductCategoryPage() {
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {category.items.map((item) => {
-              const active = selectedItem === item;
+              const active = selectedItem?.name === item.name;
+              const thumb = item.images[0];
               return (
                 <Link
-                  key={item}
-                  to={`/products/${toSlug(category.name)}/${toSlug(item)}`}
-                  className={`rounded-sm border p-5 transition-all ${active ? 'border-gold bg-gold/5' : 'border-ink/10 hover:-translate-y-1 hover:border-gold'}`}
+                  key={item.name}
+                  to={`/products/${toSlug(category.name)}/${toSlug(item.name)}`}
+                  className={`overflow-hidden rounded-sm border transition-all ${active ? 'border-gold bg-gold/5' : 'border-ink/10 hover:-translate-y-1 hover:border-gold'}`}
                 >
-                  <p className="text-sm tracking-wide">{item}</p>
+                  {thumb && (
+                    <div className="aspect-[4/3] w-full overflow-hidden bg-ink/5">
+                      <img src={thumb} alt="" className="h-full w-full object-cover" loading="lazy" />
+                    </div>
+                  )}
+                  <p className="p-4 text-sm tracking-wide">{item.name}</p>
                 </Link>
               );
             })}
           </div>
+
+          {selectedItem && selectedItem.images.length > 0 && (
+            <div className="border-t border-ink/10 pt-10">
+              <h3 className="serif mb-6 text-2xl sm:text-3xl">{selectedItem.name}</h3>
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-4">
+                {selectedItem.images.map((src) => (
+                  <motion.div
+                    key={src}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.15 }}
+                    className="aspect-square overflow-hidden rounded-sm bg-ink/5"
+                  >
+                    <img src={src} alt={selectedItem.name} className="h-full w-full object-cover" loading="lazy" />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </>
@@ -414,9 +355,9 @@ function ContactPage() {
           <motion.div initial={{ opacity: 0, x: -35 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.25 }} className="space-y-7">
             <h2 className="serif text-3xl sm:text-4xl md:text-5xl">Let us build with you.</h2>
             <div className="space-y-4 text-sm sm:text-base">
-              <p className="flex items-center gap-3"><Phone size={16} className="text-gold" /> +91 9033746674</p>
-              <p className="flex items-center gap-3"><Mail size={16} className="text-gold" /> info@prishametals.com</p>
-              <p className="flex items-center gap-3"><MapPin size={16} className="text-gold" /> Jamnagar, Gujarat, India</p>
+              <p className="flex items-center gap-3"><Phone size={16} className="text-gold" /> +91 8799051826</p>
+              <p className="flex items-center gap-3"><Mail size={16} className="text-gold" /> sales@prishametalint.com</p>
+              <p className="flex items-center gap-3"><MapPin size={16} className="text-gold" /> Plot No 7, R S No 42/P1, Sadguru Industrial Park, Kansumra Road, Jamnagar, Gujarat (India) 361 004</p>
             </div>
           </motion.div>
           <motion.img
@@ -438,7 +379,6 @@ function Footer() {
     <footer className="bg-ink px-4 py-10 text-paper sm:px-6 md:px-10">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
         <p className="text-xs tracking-[0.2em]">PRISHA METALS - ENGINEERED FOR EXCELLENCE</p>
-        <p className="text-xs opacity-70">Designed for mobile, tablet, MacBook, and desktop.</p>
       </div>
     </footer>
   );
