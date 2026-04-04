@@ -115,19 +115,19 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     name: 'CLASSIC HINGES',
-    image: productImg(ch, 'brass hinge butt', 'madhuram51463651649486727.png'),
+    image: productImg(ch, 'brass hinge butt', 'Untitled design.png'),
     items: [
       {
         name: 'Brass hinge butt',
         images: [
-          productImg(ch, 'brass hinge butt', 'madhuram51463651649486727.png'),
-          productImg(ch, 'brass hinge butt', 'madhuram93826391650787686.png'),
+          productImg(ch, 'brass hinge butt', 'Untitled design.png'),
+          productImg(ch, 'brass hinge butt', 'Untitled design (1).png'),
         ],
       },
       {
         name: 'Brass Hinge railway',
         images: [
-          productImg(ch, 'brass Hinge railway', 'madhuram41821591650787731.png'),
+          productImg(ch, 'brass Hinge railway', 'Untitled design.png'),
           productImg(ch, 'brass Hinge railway', 'madhuram92375101651226549.jpg'),
         ],
       },
@@ -140,32 +140,32 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
       },
       {
         name: 'BRASS HINGE BEARING ITALIAN TIPS',
-        images: [productImg(ch, 'BRASS HINGE BEARING ITALIAN TIPS', 'madhuram41049431650787756.png')],
+        images: [productImg(ch, 'BRASS HINGE BEARING ITALIAN TIPS', 'Untitled design.png')],
       },
       {
         name: 'brass hinge L locking',
         images: [
-          productImg(ch, 'brass hinge L locking', 'madhuram44170071650787790.png'),
+          productImg(ch, 'brass hinge L locking', 'Untitled design.png'),
           productImg(ch, 'brass hinge L locking', 'madhuram49903751651226132.jpg'),
         ],
       },
       {
         name: 'brass hinge L locking 90',
         images: [
-          productImg(ch, 'brass hinge L locking 90', 'madhuram37666481650787818.png'),
-          productImg(ch, 'brass hinge L locking 90', 'madhuram74926951649488483.png'),
+          productImg(ch, 'brass hinge L locking 90', 'Untitled design.png'),
+          productImg(ch, 'brass hinge L locking 90', 'Untitled design (1).png'),
         ],
       },
       {
         name: 'brass hinge Z',
-        images: [productImg(ch, 'brass hinge Z', 'madhuram95538921650957733.png')],
+        images: [productImg(ch, 'brass hinge Z', 'Untitled design.png')],
       },
       {
         name: 'brass overlay hinge',
         images: [
           productImg(ch, 'brass overlay hinge', 'full overlay.jpg'),
           productImg(ch, 'brass overlay hinge', 'half.jpg'),
-          productImg(ch, 'brass overlay hinge', 'madhuram72416851650787937.png'),
+          productImg(ch, 'brass overlay hinge', 'Untitled design.png'),
         ],
       },
       {
@@ -174,13 +174,13 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
       },
       {
         name: 'brass hinge parlament',
-        images: [productImg(ch, 'brass hinge parlament', 'madhuram90618211650787891.png')],
+        images: [productImg(ch, 'brass hinge parlament', 'Untitled design.png')],
       },
       {
         name: 'brass hinge spring',
         images: [
           productImg(ch, 'brass hinge spring', 'madhuram25393211650787913.png'),
-          productImg(ch, 'brass hinge spring', 'madhuram87852071656242640.png'),
+          productImg(ch, 'brass hinge spring', 'Untitled design.png'),
         ],
       },
     ],
