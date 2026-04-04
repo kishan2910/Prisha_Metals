@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { PRODUCT_CATEGORIES, toSlug } from '../productCatalog';
@@ -8,10 +8,22 @@ import { MAIN_NAV } from '../siteContent';
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-white/95 backdrop-blur-sm">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-white/90 backdrop-blur-md transition-shadow duration-300 ${
+        scrolled ? 'shadow-card' : 'shadow-none'
+      }`}
+    >
       <div className="flex h-20 w-full items-center justify-between gap-4 px-3 sm:px-4 md:px-6">
         <Link to="/" className="flex min-w-0 max-w-[270px] items-center sm:max-w-[350px] md:max-w-[440px]" aria-label="Prisha Metals home">
           <img src={IMAGE_PATHS.logo} alt="Prisha Metals logo" className="h-11 w-full object-contain object-left sm:h-12 md:h-14" />

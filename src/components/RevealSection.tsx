@@ -10,28 +10,36 @@ export type RevealSectionProps = {
 
 export function RevealSection({ title, subtitle, body, image, imageLeft = true }: RevealSectionProps) {
   return (
-    <section className="px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-10 md:gap-14 lg:grid-cols-2">
+    <section className="bg-mesh-industrial px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-28">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:gap-16 lg:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, x: imageLeft ? -70 : 70 }}
+          initial={{ opacity: 0, x: imageLeft ? -48 : 48 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.28 }}
-          transition={{ duration: 0.75 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className={imageLeft ? 'order-1' : 'order-2 lg:order-1'}
         >
-          <img src={image} alt="" className="h-[280px] w-full rounded-sm object-cover shadow-2xl shadow-ink/20 sm:h-[360px] lg:h-[430px]" />
+          <div className="group relative overflow-hidden rounded-2xl bg-ink/5 shadow-card ring-1 ring-ink/5">
+            <img
+              src={image}
+              alt=""
+              className="h-[280px] w-full object-cover transition duration-700 group-hover:scale-[1.03] sm:h-[360px] lg:h-[440px]"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-gold/10 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
+          </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: imageLeft ? 70 : -70 }}
+          initial={{ opacity: 0, x: imageLeft ? 48 : -48 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.28 }}
-          transition={{ duration: 0.75, delay: 0.08 }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ duration: 0.65, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
           className={imageLeft ? 'order-2' : 'order-1 lg:order-2'}
         >
-          <p className="mb-3 text-xs tracking-[0.35em] text-gold">{subtitle}</p>
-          <h2 className="serif mb-4 text-3xl sm:text-4xl md:text-5xl">{title}</h2>
-          <p className="max-w-xl text-sm leading-relaxed opacity-75 sm:text-base">{body}</p>
+          <div className="h-px w-12 bg-gold/80" aria-hidden />
+          <p className="mb-4 mt-6 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold sm:text-xs">{subtitle}</p>
+          <h2 className="serif mb-5 text-3xl font-medium leading-tight tracking-tight sm:text-4xl md:text-5xl">{title}</h2>
+          <p className="max-w-xl font-sans text-sm leading-relaxed text-ink/70 sm:text-base">{body}</p>
         </motion.div>
       </div>
     </section>

@@ -303,7 +303,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     ],
   },
   {
-    name: 'PRESICION TURNED COMPONENTS',
+    name: 'Precision components',
     image: productImg(bc, 'allproducts-banner.jpg'),
     items: [
       {

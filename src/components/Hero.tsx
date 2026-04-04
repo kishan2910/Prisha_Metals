@@ -23,16 +23,16 @@ export function Hero({
       <img src={image} alt="" className={`absolute inset-0 h-full w-full ${imageClassName}`} />
       <div className={`absolute inset-0 ${overlayClassName}`} />
       <motion.div
-        initial={{ opacity: 0, y: 18 }}
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         className="relative z-10 mx-auto w-full max-w-7xl"
       >
-        <p className="mb-4 text-xs tracking-[0.35em] text-gold">{eyebrow}</p>
-        <h1 className="serif mb-5 max-w-4xl text-4xl font-light leading-[1.1] text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl">
+        <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold sm:text-xs">{eyebrow}</p>
+        <h1 className="font-sans mb-5 max-w-4xl text-4xl font-semibold leading-[1.08] tracking-tight text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl">
           {title}
         </h1>
-        <p className="max-w-2xl text-sm leading-relaxed text-white/90 sm:text-base md:text-lg">{subtitle}</p>
+        <p className="max-w-2xl font-sans text-sm leading-relaxed text-white/85 sm:text-base md:text-lg">{subtitle}</p>
       </motion.div>
     </section>
   );
