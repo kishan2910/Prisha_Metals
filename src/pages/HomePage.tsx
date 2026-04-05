@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
+import { ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { RevealSection } from '../components/RevealSection';
 import { ContactForm } from '../components/ContactForm';
+import { PremiumCategoryShowcase } from '../components/PremiumCategoryShowcase';
 import { IMAGE_PATHS } from '../imagePaths';
-import { PRODUCT_CATEGORIES, toSlug } from '../productCatalog';
+import { PAGE_MAX } from '../layout/pageLayout';
+import { PRODUCT_CATEGORIES } from '../productCatalog';
 import { SITE_CONTACT } from '../siteContent';
 
 const fadeUp = {
@@ -19,27 +21,32 @@ function HomeHero() {
   return (
     <section className="overflow-hidden pt-20">
       <div
-        className="relative bg-[#e6e4dc] px-4 pb-10 pt-8 sm:px-6 sm:pb-12 sm:pt-10 md:px-10"
+        className="relative bg-[#e6e4dc] pb-10 pt-8 sm:pb-12 sm:pt-10"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a1a1a' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
         }}
       >
-        <div className="mx-auto flex max-w-6xl justify-center">
-          <motion.img
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-            src={IMAGE_PATHS.homeHero}
-            alt=""
-            className="h-auto w-full max-h-[min(72vh,920px)] object-contain drop-shadow-[0_28px_56px_-12px_rgba(0,0,0,0.28)]"
-            fetchPriority="high"
-            decoding="async"
-          />
+        <div className={PAGE_MAX}>
+          <div className="overflow-hidden rounded-lg bg-[#ddd9cf] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.25)] ring-1 ring-ink/10">
+            <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] md:aspect-[2/1]">
+              <motion.img
+                initial={{ opacity: 0, scale: 1.02 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                src={IMAGE_PATHS.homeHero}
+                alt=""
+                className="h-full w-full object-cover object-center"
+                fetchPriority="high"
+                decoding="async"
+              />
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="relative -mt-4 rounded-t-[1.75rem] bg-ink bg-gradient-to-b from-[#1f1f1f] to-ink px-4 pb-16 pt-14 shadow-[0_-12px_40px_-8px_rgba(0,0,0,0.15)] sm:-mt-6 sm:rounded-t-[2rem] sm:px-6 sm:pb-20 sm:pt-16 md:px-10 md:pb-24">
-        <div className="mx-auto max-w-5xl text-center md:text-left">
+      <div className="relative -mt-4 rounded-t-[1.75rem] bg-ink bg-gradient-to-b from-[#1f1f1f] to-ink pb-16 pt-14 shadow-[0_-12px_40px_-8px_rgba(0,0,0,0.15)] sm:-mt-6 sm:rounded-t-[2rem] sm:pb-20 sm:pt-16 md:pb-24">
+        <div className={PAGE_MAX}>
+          <div className="mx-auto max-w-5xl text-center md:text-left">
           <motion.p
             {...fadeUp}
             transition={{ duration: 0.55, delay: 0.1 }}
@@ -84,6 +91,7 @@ function HomeHero() {
               </Link>
             </motion.div>
           </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -92,67 +100,20 @@ function HomeHero() {
 
 function ProductShowcase() {
   return (
-    <section className="relative border-y border-ink/8 bg-white px-4 py-20 sm:px-6 sm:py-24 md:px-10 md:py-28">
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-gold/[0.03] via-transparent to-transparent" />
-      <div className="relative mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.55 }}
-          className="mb-14 max-w-3xl"
-        >
-          <p className="mb-3 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold sm:text-xs">Collection zones</p>
-          <h2 className="serif text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">Eight product families</h2>
-          <p className="mt-4 max-w-2xl font-sans text-sm leading-relaxed text-ink/65 sm:text-base">
-            Explore the full range—each card opens the category with photography, sub-lines, and specifications.
-          </p>
-        </motion.div>
-
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {PRODUCT_CATEGORIES.map((category, index) => (
-            <motion.div
-              key={category.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.12 }}
-              transition={{ duration: 0.5, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <Link
-                to={`/products/${toSlug(category.name)}`}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl bg-ink/[0.03] shadow-card ring-1 ring-ink/8 transition duration-300 hover:-translate-y-1 hover:shadow-premium hover:ring-gold/25"
-              >
-                <div className="relative aspect-[4/3] w-full overflow-hidden">
-                  <img
-                    src={category.image}
-                    alt=""
-                    className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent opacity-90 transition duration-300 group-hover:from-ink/90" />
-                  <span className="absolute bottom-3 right-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md transition duration-300 group-hover:bg-gold group-hover:text-ink">
-                    <ArrowUpRight size={20} aria-hidden />
-                  </span>
-                </div>
-                <div className="flex flex-1 flex-col p-5">
-                  <h3 className="font-sans text-sm font-semibold uppercase tracking-wide text-ink transition group-hover:text-gold">
-                    {category.name}
-                  </h3>
-                  <p className="mt-2 flex-1 font-sans text-xs leading-relaxed text-ink/55">View range &amp; finishes</p>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <PremiumCategoryShowcase
+      categories={PRODUCT_CATEGORIES}
+      layout="home"
+      eyebrow="Collection zones"
+      sectionTitle="Eight product families"
+      sectionSubtitle="Explore the full range—each card opens the category with photography, sub-lines, and specifications."
+    />
   );
 }
 
 function HomeContactBand() {
   return (
-    <section className="bg-ink px-4 py-20 text-white sm:px-6 sm:py-24 md:px-10 md:py-28">
-      <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-2 lg:gap-16 lg:items-start">
+    <section className="bg-ink py-20 text-white sm:py-24 md:py-28">
+      <div className={`grid gap-14 lg:grid-cols-2 lg:gap-16 lg:items-start ${PAGE_MAX}`}>
         <motion.div
           initial={{ opacity: 0, x: -28 }}
           whileInView={{ opacity: 1, x: 0 }}

@@ -1,8 +1,9 @@
 import { motion } from 'motion/react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { Building2, Mail, MapPin, Phone } from 'lucide-react';
 import { Hero } from '../components/Hero';
 import { ContactForm } from '../components/ContactForm';
 import { IMAGE_PATHS } from '../imagePaths';
+import { PAGE_MAX } from '../layout/pageLayout';
 import { SITE_CONTACT } from '../siteContent';
 
 export function ContactPage() {
@@ -15,66 +16,94 @@ export function ContactPage() {
         overlayClassName="bg-gradient-to-r from-ink/88 via-ink/55 to-ink/30"
       />
 
-      <section className="bg-mesh-industrial px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
+      {/* Section 1 — form first (task-focused), full width band */}
+      <section className="border-b border-ink/10 bg-white py-16 sm:py-20">
+        <div className={PAGE_MAX}>
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55 }}
-            className="space-y-8"
+            transition={{ duration: 0.5 }}
+            className="mx-auto max-w-2xl"
           >
-            <div>
-              <div className="h-px w-12 bg-gold" aria-hidden />
-              <h2 className="serif mt-8 text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">Let us build with you.</h2>
-              <p className="mt-4 max-w-md font-sans text-sm leading-relaxed text-ink/65">
-                Direct lines to our sales team and factory coordination. Use the form or reach out by phone or email.
-              </p>
+            <p className="text-center text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">Write to us</p>
+            <h2 className="mt-3 text-center font-serif text-3xl font-medium tracking-tight sm:text-4xl">Send an inquiry</h2>
+            <p className="mx-auto mt-4 max-w-md text-center font-sans text-sm text-ink/60">
+              Share scope, finishes, quantities, or drawings. We will route your message to the right team.
+            </p>
+            <div className="mt-10 rounded-2xl border border-ink/10 bg-mesh-industrial p-6 shadow-card sm:p-8">
+              <ContactForm variant="light" />
             </div>
-            <ul className="space-y-6 font-sans text-sm">
-              <li className="flex gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold">
-                  <Phone size={18} aria-hidden />
-                </span>
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-ink/45">Phone</p>
-                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="mt-1 block font-medium text-ink transition hover:text-gold">
-                    {SITE_CONTACT.phone}
-                  </a>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold">
-                  <Mail size={18} aria-hidden />
-                </span>
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-ink/45">Email</p>
-                  <a href={`mailto:${SITE_CONTACT.email}`} className="mt-1 block break-all font-medium text-ink transition hover:text-gold">
-                    {SITE_CONTACT.email}
-                  </a>
-                </div>
-              </li>
-              <li className="flex gap-4">
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gold/15 text-gold">
-                  <MapPin size={18} aria-hidden />
-                </span>
-                <div>
-                  <p className="text-[10px] font-semibold uppercase tracking-widest text-ink/45">Address</p>
-                  <p className="mt-1 font-medium leading-relaxed text-ink/80">{SITE_CONTACT.fullAddress}</p>
-                </div>
-              </li>
-            </ul>
           </motion.div>
+        </div>
+      </section>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.55, delay: 0.06 }}
-            className="rounded-2xl border border-ink/10 bg-white p-6 shadow-card sm:p-8"
-          >
-            <ContactForm variant="light" />
-          </motion.div>
+      {/* Section 2 — company & direct channels */}
+      <section className="bg-ink py-16 text-white sm:py-20">
+        <div className={PAGE_MAX}>
+          <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="flex items-center gap-3">
+                <Building2 className="h-8 w-8 text-gold" aria-hidden />
+                <h2 className="font-serif text-2xl font-medium sm:text-3xl">About Prisha Metals</h2>
+              </div>
+              <p className="mt-6 font-sans text-sm leading-relaxed text-white/75">
+                We manufacture architectural brass hardware, bath fittings, glass fittings, and precision turned components from our facility in Jamnagar, Gujarat. Our focus is repeatable finishing,
+                dimensional control, and documentation that supports specifier and export workflows.
+              </p>
+              <p className="mt-4 font-sans text-sm leading-relaxed text-white/65">
+                Whether you need catalogue finishes, OEM labelling, or parts made strictly to drawing, we align sampling, batch consistency, and dispatch with your project timeline.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.06 }}
+            >
+              <p className="text-[10px] font-semibold uppercase tracking-[0.35em] text-gold">Direct contact</p>
+              <h3 className="mt-3 font-serif text-xl font-medium">Reach the team</h3>
+              <ul className="mt-8 space-y-6 font-sans text-sm">
+                <li className="flex gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                    <Phone size={18} aria-hidden />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">Phone</p>
+                    <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="mt-1 block text-white/90 transition hover:text-gold">
+                      {SITE_CONTACT.phone}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                    <Mail size={18} aria-hidden />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">Email</p>
+                    <a href={`mailto:${SITE_CONTACT.email}`} className="mt-1 block break-all text-white/90 transition hover:text-gold">
+                      {SITE_CONTACT.email}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                    <MapPin size={18} aria-hidden />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">Address</p>
+                    <p className="mt-1 leading-relaxed text-white/80">{SITE_CONTACT.fullAddress}</p>
+                  </div>
+                </li>
+              </ul>
+            </motion.div>
+          </div>
         </div>
       </section>
     </>

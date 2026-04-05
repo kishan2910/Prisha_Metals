@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { PRODUCT_CATEGORIES, toSlug } from '../productCatalog';
+import { PAGE_MAX } from '../layout/pageLayout';
 import { COPYRIGHT_YEAR, MAIN_NAV, SITE_CONTACT, SITE_NAME, SITE_TAGLINE } from '../siteContent';
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-white/10 bg-ink text-paper">
-      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 md:px-10">
+      <div className={`py-14 ${PAGE_MAX}`}>
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
             <Link to="/" className="serif inline-block text-2xl tracking-wide text-white md:text-3xl" aria-label={`${SITE_NAME} home`}>

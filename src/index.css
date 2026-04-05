@@ -13,6 +13,12 @@
   --color-surface: #f6f5f1;
   --color-surface-dark: #141414;
 
+  /* Luxury catalogue accents (product showcase) */
+  --color-luxury-gold: #c9a14a;
+  --color-luxury-void: #0d0d0d;
+  --color-luxury-cream: #fafaf8;
+  --color-luxury-mist: #f3f1eb;
+
   --shadow-premium: 0 25px 50px -12px rgb(0 0 0 / 0.18);
   --shadow-card: 0 4px 24px -4px rgb(0 0 0 / 0.08);
   --shadow-glow-gold: 0 12px 40px -8px rgb(197 160 89 / 0.35);

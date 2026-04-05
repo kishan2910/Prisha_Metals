@@ -38,7 +38,7 @@ const bc = 'brass components';
 export const PRODUCT_CATEGORIES: ProductCategory[] = [
   {
     name: 'PREMIUM HANDLES',
-    image: productImg(ph, 'Mortise handle', 'Untitled design.png'),
+    image: productImg(ph, 'handel main.png'),
     items: [
       {
         name: 'Mortise handle',
@@ -83,7 +83,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     name: 'DOOR LOCKS',
-    image: productImg(dl, 'Lock body', 'baby latch', 'madhuram52702461651581006.png'),
+    image: productImg(dl, 'lock main.png'),
     items: [
       {
         name: 'Lock body',
@@ -115,7 +115,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     name: 'CLASSIC HINGES',
-    image: productImg(ch, 'brass hinge butt', 'Untitled design.png'),
+    image: productImg(ch, 'hinge main.png'),
     items: [
       {
         name: 'Brass hinge butt',
@@ -187,7 +187,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     name: 'BATH FITTINGS',
-    image: productImg(bf, 'piller cock (wash basin)', 'Untitled design.png'),
+    image: productImg(bf, 'bath main.png'),
     items: [
       {
         name: 'Piller Cock (Wash Basin)',
@@ -248,7 +248,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     name: 'GLASS HARDWARES',
-    image: productImg(gh, 'Brass D Bracket', 'madhuram58621061650547145.png'),
+    image: productImg(gh, 'glass main.png'),
     items: [
       { name: 'Brass D Bracket', images: [productImg(gh, 'Brass D Bracket', 'madhuram58621061650547145.png')] },
       { name: 'Brass F Bracket', images: [productImg(gh, 'Brass F Bracket', 'madhuram63854271650547192.png')] },
@@ -272,7 +272,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     name: 'LUXURY KNOBS',
-    image: productImg(lk, 'PM 01', 'madhuram87922021656072688.png'),
+    image: productImg(lk, 'knob main.png'),
     items: [
       {
         name: 'PM 01',
@@ -294,7 +294,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
   },
   {
     name: 'DOOR VIEWERS',
-    image: productImg(dv, 'madhuram38265231650545453.png'),
+    image: productImg(dv, 'door main.png'),
     items: [
       {
         name: 'Door viewers',
@@ -303,8 +303,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     ],
   },
   {
-    name: 'Precision components',
-    image: productImg(bc, 'allproducts-banner.jpg'),
+    name: 'PRECISION COMPONENTS',
+    image: productImg(bc, 'brass main.png'),
     items: [
       {
         name: 'Custom turned components as per drawing',

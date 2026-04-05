@@ -1,4 +1,5 @@
 import { motion } from 'motion/react';
+import { PAGE_MAX } from '../layout/pageLayout';
 
 export type RevealSectionProps = {
   title: string;
@@ -10,8 +11,8 @@ export type RevealSectionProps = {
 
 export function RevealSection({ title, subtitle, body, image, imageLeft = true }: RevealSectionProps) {
   return (
-    <section className="bg-mesh-industrial px-4 py-16 sm:px-6 sm:py-20 md:px-10 md:py-28">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 md:gap-16 lg:grid-cols-2">
+    <section className="bg-mesh-industrial py-16 sm:py-20 md:py-28">
+      <div className={`grid grid-cols-1 items-center gap-12 md:gap-16 lg:grid-cols-2 ${PAGE_MAX}`}>
         <motion.div
           initial={{ opacity: 0, x: imageLeft ? -48 : 48 }}
           whileInView={{ opacity: 1, x: 0 }}

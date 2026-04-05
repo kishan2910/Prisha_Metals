@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { PRODUCT_CATEGORIES, toSlug } from '../productCatalog';
 import { IMAGE_PATHS } from '../imagePaths';
 import { MAIN_NAV } from '../siteContent';
+import { PAGE_MAX } from '../layout/pageLayout';
 
+/**
+ * Simple primary nav: no deep product trees in the menu—catalogue lives under /products (better UX, less cognitive load).
+ */
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
 
@@ -18,102 +20,72 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 border-b border-ink/10 bg-white/90 backdrop-blur-md transition-shadow duration-300 ${
         scrolled ? 'shadow-card' : 'shadow-none'
       }`}
     >
-      <div className="flex h-20 w-full items-center justify-between gap-4 px-3 sm:px-4 md:px-6">
-        <Link to="/" className="flex min-w-0 max-w-[270px] items-center sm:max-w-[350px] md:max-w-[440px]" aria-label="Prisha Metals home">
-          <img src={IMAGE_PATHS.logo} alt="Prisha Metals logo" className="h-11 w-full object-contain object-left sm:h-12 md:h-14" />
-        </Link>
+      <div className={PAGE_MAX}>
+        <div className="flex h-[4.5rem] items-center justify-between gap-6">
+          <Link to="/" className="flex h-10 shrink-0 items-center" aria-label="Prisha Metals home">
+            <img
+              src={IMAGE_PATHS.logo}
+              alt=""
+              className="h-9 w-auto max-h-9 max-w-[min(100%,200px)] object-contain object-left sm:h-10 sm:max-h-10"
+            />
+          </Link>
 
-        <nav className="ml-auto hidden items-center gap-7 xl:gap-8 lg:flex" aria-label="Primary">
-          {MAIN_NAV.map((link) =>
-            link.label === 'Products' ? (
-              <div key={link.to} className="group relative">
-                <Link
-                  to={link.to}
-                  className={`text-xs font-semibold tracking-[0.2em] transition-colors ${location.pathname.startsWith('/products') ? 'text-gold' : 'hover:text-gold'}`}
-                >
-                  {link.label.toUpperCase()}
-                </Link>
-                <div className="invisible absolute left-0 top-full z-50 mt-3 w-[340px] rounded-sm border border-ink/10 bg-white p-4 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
-                  <div className="flex flex-col">
-                    {PRODUCT_CATEGORIES.map((category) => (
-                      <div key={category.name} className="border-b border-ink/10 last:border-b-0">
-                        <Link to={`/products/${toSlug(category.name)}`} className="serif block py-2 text-lg hover:text-gold">
-                          {category.name}
-                        </Link>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
+          <nav className="ml-auto hidden items-center gap-8 lg:flex" aria-label="Primary">
+            {MAIN_NAV.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
-                className={`text-xs font-semibold tracking-[0.2em] transition-colors ${location.pathname === link.to ? 'text-gold' : 'hover:text-gold'}`}
+                className={`text-[11px] font-semibold tracking-[0.22em] transition-colors ${
+                  link.to === '/products'
+                    ? location.pathname.startsWith('/products')
+                      ? 'text-gold'
+                      : 'hover:text-gold'
+                    : location.pathname === link.to
+                      ? 'text-gold'
+                      : 'hover:text-gold'
+                }`}
               >
                 {link.label.toUpperCase()}
               </Link>
-            ),
-          )}
-        </nav>
+            ))}
+          </nav>
 
-        <button type="button" className="lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu">
-          <Menu size={24} />
-        </button>
+          <button type="button" className="flex h-10 w-10 items-center justify-center lg:hidden" onClick={() => setOpen(true)} aria-label="Open menu">
+            <Menu size={22} />
+          </button>
+        </div>
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-white p-8 lg:hidden">
-          <button type="button" className="ml-auto mb-8 block" onClick={() => setOpen(false)} aria-label="Close menu">
-            <X size={28} />
-          </button>
-          <div className="flex flex-col gap-7">
-            {MAIN_NAV.map((link) =>
-              link.label === 'Products' ? (
-                <div key={link.to} className="space-y-4">
-                  <button type="button" className="serif text-left text-4xl" onClick={() => setMobileProductsOpen((prev) => !prev)}>
-                    {link.label.toUpperCase()}
-                  </button>
-                  {mobileProductsOpen && (
-                    <div className="space-y-4 border-l border-ink/20 pl-4">
-                      <Link to="/products" className="block text-sm tracking-[0.15em] hover:text-gold" onClick={() => setOpen(false)}>
-                        VIEW ALL
-                      </Link>
-                      {PRODUCT_CATEGORIES.map((category) => (
-                        <div key={category.name} className="space-y-2">
-                          <Link to={`/products/${toSlug(category.name)}`} className="serif block text-2xl hover:text-gold" onClick={() => setOpen(false)}>
-                            {category.name}
-                          </Link>
-                          <div className="flex flex-wrap gap-2">
-                            {category.items.map((item) => (
-                              <Link
-                                key={item.name}
-                                to={`/products/${toSlug(category.name)}/${toSlug(item.name)}`}
-                                className="rounded-full border border-ink/20 px-2 py-1 text-[11px]"
-                                onClick={() => setOpen(false)}
-                              >
-                                {item.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link key={link.to} to={link.to} className="serif text-4xl" onClick={() => setOpen(false)}>
-                  {link.label.toUpperCase()}
-                </Link>
-              ),
-            )}
+        <div className="fixed inset-0 z-50 bg-white lg:hidden">
+          <div className={PAGE_MAX}>
+            <div className="flex h-[4.5rem] items-center justify-end">
+              <button type="button" onClick={() => setOpen(false)} aria-label="Close menu">
+                <X size={26} />
+              </button>
+            </div>
           </div>
+          <nav className="flex flex-col gap-1 px-4 pb-10 pt-4" aria-label="Mobile primary">
+            {MAIN_NAV.map((link) => (
+              <Link key={link.to} to={link.to} className="border-b border-ink/10 py-5 font-serif text-2xl" onClick={() => setOpen(false)}>
+                {link.label}
+              </Link>
+            ))}
+            <p className="pt-8 text-xs uppercase tracking-widest text-ink/40">Full catalogue</p>
+            <Link to="/products" className="mt-2 text-sm font-medium text-gold" onClick={() => setOpen(false)}>
+              Browse all collections →
+            </Link>
+          </nav>
         </div>
       )}
     </header>
