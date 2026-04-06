@@ -12,7 +12,8 @@ export function ContactPage() {
       <Hero
         image={IMAGE_PATHS.contactHero}
         eyebrow=""
-        imageClassName="object-contain object-center"
+        overlayClassName="bg-transparent"
+        imageClassName="object-cover object-center"
       />
 
       {/* Section 1 — form first (task-focused), full width band */}

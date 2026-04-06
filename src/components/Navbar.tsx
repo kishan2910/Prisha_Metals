@@ -67,9 +67,9 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="fixed inset-0 z-50 bg-white lg:hidden">
+        <div className="fixed inset-0 z-50 bg-white/95 backdrop-blur-xl shadow-2xl lg:hidden">
           <div className={PAGE_MAX}>
-            <div className="flex h-[4.5rem] items-center justify-end">
+            <div className="flex h-[4.5rem] items-center justify-end border-b border-ink/10">
               <button type="button" onClick={() => setOpen(false)} aria-label="Close menu">
                 <X size={26} />
               </button>
@@ -77,7 +77,12 @@ export function Navbar() {
           </div>
           <nav className="flex flex-col gap-1 px-4 pb-10 pt-4" aria-label="Mobile primary">
             {MAIN_NAV.map((link) => (
-              <Link key={link.to} to={link.to} className="border-b border-ink/10 py-5 font-serif text-2xl" onClick={() => setOpen(false)}>
+              <Link
+                key={link.to}
+                to={link.to}
+                className="border-b border-ink/10 py-5 font-serif text-2xl text-ink transition hover:text-gold"
+                onClick={() => setOpen(false)}
+              >
                 {link.label}
               </Link>
             ))}

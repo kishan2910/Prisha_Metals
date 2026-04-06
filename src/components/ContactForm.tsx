@@ -15,6 +15,8 @@ export function ContactForm({ variant = 'light', className = '' }: ContactFormPr
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const isDark = variant === 'dark';
 
@@ -23,14 +25,28 @@ export function ContactForm({ variant = 'light', className = '' }: ContactFormPr
   const fieldLight = 'border-ink/15 bg-white text-ink placeholder:text-ink/40 focus:border-gold/60';
   const fieldDark = 'border-white/15 bg-white/5 text-white placeholder:text-white/40 focus:border-gold/50 focus-visible:ring-offset-ink';
 
-  function handleSubmit(e: FormEvent) {
+  async function handleSubmit(e: FormEvent) {
     e.preventDefault();
-    const subject = encodeURIComponent(`Website inquiry from ${name || 'visitor'}`);
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\nMessage:\n${message}`,
-    );
-    window.location.href = `mailto:${SITE_CONTACT.email}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setSending(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, message }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to send inquiry. Please try again.');
+      }
+
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'An error occurred.');
+    } finally {
+      setSending(false);
+    }
   }
 
   if (submitted) {
@@ -42,11 +58,7 @@ export function ContactForm({ variant = 'light', className = '' }: ContactFormPr
       >
         <p className="font-medium">Thank you.</p>
         <p className={`mt-2 text-sm ${isDark ? 'text-white/70' : 'text-ink/65'}`}>
-          Your email app should open with your message. If it does not, write to us at{' '}
-          <a href={`mailto:${SITE_CONTACT.email}`} className="text-gold underline-offset-2 hover:underline">
-            {SITE_CONTACT.email}
-          </a>
-          .
+          Your inquiry has been received and has been forwarded to sales@prishametalint.com for our team to follow up.
         </p>
         <button
           type="button"
@@ -120,11 +132,13 @@ export function ContactForm({ variant = 'light', className = '' }: ContactFormPr
           placeholder="Project scope, quantities, finishes, timelines…"
         />
       </label>
+      {error ? <p className="text-sm text-red-600">{error}</p> : null}
       <motion.button
         type="submit"
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.99 }}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold py-3.5 text-sm font-semibold tracking-wide text-ink shadow-lg shadow-gold/20 transition hover:bg-gold/90 sm:w-auto sm:min-w-[200px]"
+        disabled={sending}
+        className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-gold py-3.5 text-sm font-semibold tracking-wide text-ink shadow-lg shadow-gold/20 transition hover:bg-gold/90 disabled:cursor-not-allowed disabled:bg-gold/70 sm:w-auto sm:min-w-[200px]"
       >
         <Send size={18} aria-hidden />
         Send inquiry

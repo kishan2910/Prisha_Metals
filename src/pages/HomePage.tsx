@@ -19,27 +19,20 @@ const fadeUp = {
  */
 function HomeHero() {
   return (
-    <section className="overflow-hidden pt-20">
-      <div
-        className="relative bg-[#e6e4dc] pb-10 pt-8 sm:pb-12 sm:pt-10"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a1a1a' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }}
-      >
-        <div className={PAGE_MAX}>
-          <div className="overflow-hidden rounded-lg bg-[#ddd9cf] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.25)] ring-1 ring-ink/10">
-            <div className="aspect-[4/3] w-full sm:aspect-[16/10] md:aspect-[2/1]">
-              <motion.img
-                initial={{ opacity: 0, scale: 1.02 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                src={IMAGE_PATHS.homeHero}
-                alt=""
-                className="h-full w-full object-cover object-center"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
+    <section className="overflow-hidden pt-[4.5rem]">
+      <div className="w-full">
+        <div className="overflow-hidden">
+          <div className="h-[calc(100vh-4.5rem)] w-full">
+            <motion.img
+              initial={{ opacity: 0, scale: 1.02 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              src={IMAGE_PATHS.homeHero}
+              alt=""
+              className="h-full w-full object-cover object-center"
+              fetchPriority="high"
+              decoding="async"
+            />
           </div>
         </div>
       </div>
