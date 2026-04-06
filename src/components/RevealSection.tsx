@@ -40,7 +40,7 @@ export function RevealSection({ title, subtitle, body, image, imageLeft = true }
           <div className="h-px w-12 bg-gold/80" aria-hidden />
           <p className="mb-4 mt-6 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold sm:text-xs">{subtitle}</p>
           <h2 className="serif mb-5 text-3xl font-medium leading-tight tracking-tight sm:text-4xl md:text-5xl">{title}</h2>
-          <p className="max-w-xl font-sans text-sm leading-relaxed text-ink/70 sm:text-base">{body}</p>
+          <p className="max-w-xl font-sans text-sm leading-relaxed text-ink/70 text-justify sm:text-base">{body}</p>
         </motion.div>
       </div>
     </section>

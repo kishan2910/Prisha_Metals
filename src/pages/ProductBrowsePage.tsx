@@ -126,10 +126,8 @@ export function ProductBrowsePage() {
 
                 <dl className="divide-y divide-ink/10 rounded-xl border border-ink/10 bg-white font-sans text-sm shadow-sm">
                   {[
-                    ['Dimensions (L × W × H)', variant.dimensions],
                     ['Material', variant.material],
                     ['Finish', variant.finish],
-                    ['Weight', variant.weight],
                   ].map(([dt, dd]) => (
                     <div key={dt} className="grid gap-1 px-5 py-4 sm:grid-cols-[minmax(0,160px)_1fr] sm:gap-8">
                       <dt className="text-[11px] font-semibold uppercase tracking-wider text-ink/45">{dt}</dt>
@@ -137,6 +135,17 @@ export function ProductBrowsePage() {
                     </div>
                   ))}
                 </dl>
+
+                <div className="space-y-4 rounded-xl border border-ink/10 bg-white p-5 font-sans text-sm shadow-sm">
+                  <div>
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-ink/45 mb-3">Available Finishes</h3>
+                    <p className="text-ink/85 leading-relaxed">SSM – Satin Stainless / Matt Finish, ZB – Zinc Black, ABM – Antique Brass Matt, PVDR – PVD Rose Gold, PVDG – PVD Gold</p>
+                  </div>
+                  <div>
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-ink/45 mb-3">Customization</h3>
+                    <p className="text-ink/85 leading-relaxed">Customization available. Contact us for project-specific requirements.</p>
+                  </div>
+                </div>
 
                 <div className="flex flex-wrap gap-3">
                   <Link
@@ -169,7 +178,7 @@ export function ProductBrowsePage() {
       <>
         <PageHero
           title={item.name}
-          subtitle={`${variants.length} piece${variants.length === 1 ? '' : 's'} in this line—select for dimensions and finish notes.`}
+          subtitle="Select a piece to view specifications and available finishes."
           image={item.images[0] ?? category.image}
         />
         <section className="bg-mesh-industrial pb-20 pt-10">

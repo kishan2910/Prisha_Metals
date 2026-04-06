@@ -75,9 +75,20 @@ export function ContactPage() {
                     <Phone size={18} aria-hidden />
                   </span>
                   <div>
-                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">Phone</p>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">Phone (India)</p>
                     <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="mt-1 block text-white/90 transition hover:text-gold">
                       {SITE_CONTACT.phone}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex gap-4">
+                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white/10 text-gold">
+                    <Phone size={18} aria-hidden />
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-semibold uppercase tracking-widest text-white/45">Phone (Germany - Sales)</p>
+                    <a href={`tel:${SITE_CONTACT.germanySalesExec.replace(/\s/g, '')}`} className="mt-1 block text-white/90 transition hover:text-gold">
+                      {SITE_CONTACT.germanySalesExec}
                     </a>
                   </div>
                 </li>

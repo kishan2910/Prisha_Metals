@@ -28,7 +28,7 @@ function HomeHero() {
       >
         <div className={PAGE_MAX}>
           <div className="overflow-hidden rounded-lg bg-[#ddd9cf] shadow-[0_20px_50px_-20px_rgba(0,0,0,0.25)] ring-1 ring-ink/10">
-            <div className="relative aspect-[4/3] w-full sm:aspect-[16/10] md:aspect-[2/1]">
+            <div className="aspect-[4/3] w-full sm:aspect-[16/10] md:aspect-[2/1]">
               <motion.img
                 initial={{ opacity: 0, scale: 1.02 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -46,32 +46,32 @@ function HomeHero() {
 
       <div className="relative -mt-4 rounded-t-[1.75rem] bg-ink bg-gradient-to-b from-[#1f1f1f] to-ink pb-16 pt-14 shadow-[0_-12px_40px_-8px_rgba(0,0,0,0.15)] sm:-mt-6 sm:rounded-t-[2rem] sm:pb-20 sm:pt-16 md:pb-24">
         <div className={PAGE_MAX}>
-          <div className="mx-auto max-w-5xl text-center md:text-left">
+          <div className="mx-auto max-w-4xl">
           <motion.p
             {...fadeUp}
             transition={{ duration: 0.55, delay: 0.1 }}
-            className="mb-3 text-[10px] font-semibold uppercase tracking-[0.4em] text-gold sm:text-xs"
+            className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.4em] text-gold sm:text-xs"
           >
             Engineered for excellence
           </motion.p>
           <motion.h1
             {...fadeUp}
             transition={{ duration: 0.55, delay: 0.18 }}
-            className="font-sans text-4xl font-semibold leading-[1.08] tracking-tight text-white text-balance sm:text-5xl md:text-6xl lg:text-7xl"
+            className="text-center font-sans text-4xl font-semibold leading-[1.08] tracking-tight text-white text-balance sm:text-5xl md:text-6xl lg:text-6xl"
           >
             Architectural brass &amp; precision hardware
           </motion.h1>
           <motion.p
             {...fadeUp}
             transition={{ duration: 0.55, delay: 0.26 }}
-            className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-white/80 md:mx-0 md:text-base"
+            className="mx-auto mt-5 text-center text-sm leading-relaxed text-white/80 sm:text-base"
           >
             Premium handles, locks, hinges, bath fittings, glass hardware, and made-to-drawing components—finished and supplied with industrial consistency.
           </motion.p>
           <motion.div
             {...fadeUp}
             transition={{ duration: 0.55, delay: 0.34 }}
-            className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row sm:justify-start"
+            className="mt-9 flex flex-col items-center justify-center gap-4"
           >
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link
@@ -123,15 +123,27 @@ function HomeContactBand() {
           <div className="h-px w-12 bg-gold" aria-hidden />
           <p className="mb-4 mt-8 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold sm:text-xs">Contact</p>
           <h2 className="serif text-3xl font-medium tracking-tight sm:text-4xl md:text-5xl">Talk to Our Team</h2>
-          <p className="mt-5 max-w-md font-sans text-sm leading-relaxed text-white/65">
+          <p className="mt-5 font-sans text-sm leading-relaxed text-white/65 text-justify">
           Tell us about your requirements. Send drawings, finishes or quantities, and our team will guide you through timelines and next steps.
           </p>
           <ul className="mt-10 space-y-5 font-sans text-sm text-white/85">
             <li className="flex gap-4">
               <Phone size={20} className="mt-0.5 shrink-0 text-gold" aria-hidden />
-              <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="transition hover:text-gold">
-                {SITE_CONTACT.phone}
-              </a>
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-white/60 mb-1">India</p>
+                <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="transition hover:text-gold">
+                  {SITE_CONTACT.phone}
+                </a>
+              </div>
+            </li>
+            <li className="flex gap-4">
+              <Phone size={20} className="mt-0.5 shrink-0 text-gold" aria-hidden />
+              <div>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-white/60 mb-1">Germany (Sales Executive)</p>
+                <a href={`tel:${SITE_CONTACT.germanySalesExec.replace(/\s/g, '')}`} className="transition hover:text-gold">
+                  {SITE_CONTACT.germanySalesExec}
+                </a>
+              </div>
             </li>
             <li className="flex gap-4">
               <Mail size={20} className="mt-0.5 shrink-0 text-gold" aria-hidden />

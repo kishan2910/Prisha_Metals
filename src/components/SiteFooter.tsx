@@ -50,9 +50,21 @@ export function SiteFooter() {
             <ul className="space-y-4 text-sm text-white/80">
               <li className="flex gap-3">
                 <Phone size={18} className="mt-0.5 shrink-0 text-gold" aria-hidden />
-                <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="hover:text-gold">
-                  {SITE_CONTACT.phone}
-                </a>
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60 mb-1">India</p>
+                  <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="hover:text-gold">
+                    {SITE_CONTACT.phone}
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-3">
+                <Phone size={18} className="mt-0.5 shrink-0 text-gold" aria-hidden />
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-white/60 mb-1">Germany (Sales Executive)</p>
+                  <a href={`tel:${SITE_CONTACT.germanySalesExec.replace(/\s/g, '')}`} className="hover:text-gold">
+                    {SITE_CONTACT.germanySalesExec}
+                  </a>
+                </div>
               </li>
               <li className="flex gap-3">
                 <Mail size={18} className="mt-0.5 shrink-0 text-gold" aria-hidden />

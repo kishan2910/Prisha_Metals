@@ -4,35 +4,35 @@ import type { ProductCategory } from './productCatalog';
 const LUXURY_BY_CATALOG_NAME: Record<string, { displayTitle: string; blurb: string }> = {
   'PREMIUM HANDLES': {
     displayTitle: 'Premium Handles',
-    blurb: 'Mortise, pull, and cabinet lines—sculpted brass with quiet presence.',
+    blurb: '',
   },
   'DOOR LOCKS': {
     displayTitle: 'Door Locks',
-    blurb: 'Bodies, cylinders, and locking brass engineered for dependable security.',
+    blurb: '',
   },
   'CLASSIC HINGES': {
     displayTitle: 'Classic Hinges',
-    blurb: 'Butt, railway, overlay, and specialty hinges with bearing discipline.',
+    blurb: '',
   },
   'BATH FITTINGS': {
     displayTitle: 'Bath Fittings',
-    blurb: 'Mixers, showers, and accessories coordinated for refined wash spaces.',
+    blurb: '',
   },
   'GLASS HARDWARES': {
     displayTitle: 'Glass Hardware',
-    blurb: 'Brackets, caps, and fixings composed for architectural glass.',
+    blurb: '',
   },
   'LUXURY KNOBS': {
     displayTitle: 'Luxury Knobs',
-    blurb: 'Signature profiles for doors and cabinetry—tactile, balanced, lasting.',
+    blurb: '',
   },
   'DOOR VIEWERS': {
     displayTitle: 'Door Viewers',
-    blurb: 'Optical hardware with clarity and discretion at the entrance.',
+    blurb: '',
   },
   'PRECISION COMPONENTS': {
     displayTitle: 'Precision Components',
-    blurb: 'Turned and machined brass produced to drawing, batch after batch.',
+    blurb: '',
   },
 };
 
