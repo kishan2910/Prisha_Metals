@@ -15,7 +15,7 @@ export function ProductsPage() {
         layout="catalog"
         eyebrow="Signature collections"
         sectionTitle="Eight signature collections"
-        sectionSubtitle="Architectural brass and precision hardware—each line photographed and documented like a high-end catalogue."
+        sectionSubtitle="Exclusive collections that define elegance, durability, and refined craftsmanship."
       />
     </>
   );

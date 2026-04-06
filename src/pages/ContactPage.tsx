@@ -10,10 +10,9 @@ export function ContactPage() {
   return (
     <>
       <Hero
-        title="Contact"
-        subtitle="Manufacturing, export, and custom component inquiries."
         image={IMAGE_PATHS.contactHero}
-        overlayClassName="bg-gradient-to-r from-ink/88 via-ink/55 to-ink/30"
+        eyebrow=""
+        imageClassName="object-contain object-center"
       />
 
       {/* Section 1 — form first (task-focused), full width band */}

@@ -90,7 +90,7 @@ export function ProductBrowsePage() {
 
     return (
       <>
-        <PageHero title={variant.label} subtitle="Specifications below are indicative—request formal TDS for your project." image={variant.image} />
+        <PageHero title={variant.label} image={variant.image} />
         <section className="bg-mesh-industrial pb-20 pt-10">
           <div className={PAGE_MAX}>
             <Breadcrumbs
@@ -168,10 +168,6 @@ export function ProductBrowsePage() {
                       </li>
                     </ul>
                   </div>
-                  <div>
-                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-ink/45 mb-3">Material & Customization</h3>
-                    <p className="text-ink/85 leading-relaxed">Forged brass construction with stainless steel inserts. Full customization available. Contact us for project-specific requirements.</p>
-                  </div>
                 </div>
 
                 <div className="flex flex-wrap gap-3">
@@ -205,7 +201,6 @@ export function ProductBrowsePage() {
       <>
         <PageHero
           title={item.name}
-          subtitle={`${item.images.length} variant${item.images.length === 1 ? '' : 's'} — select to view specifications and finishes.`}
           image={item.images[0] ?? category.image}
         />
         <section className="bg-mesh-industrial pb-20 pt-10">
@@ -254,7 +249,6 @@ export function ProductBrowsePage() {
     <>
       <PageHero
         title={category.name}
-        subtitle={`Browse our ${category.items.length} product lines below.`}
         image={category.image}
       />
       <section className="bg-mesh-industrial pb-24 pt-10">
