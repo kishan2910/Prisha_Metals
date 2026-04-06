@@ -76,7 +76,6 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
           productImg(ph, 'Pull Handle', 'Untitled design.png'),
           productImg(ph, 'Pull Handle', 'Untitled design (1).png'),
           productImg(ph, 'Pull Handle', 'Untitled design (2).png'),
-          productImg(ph, 'Pull Handle', 'Untitled design (3).png'),
           productImg(ph, 'Pull Handle', 'Untitled design (4).png'),
           productImg(ph, 'Pull Handle', 'Untitled design (5).png'),
           productImg(ph, 'Pull Handle', 'Untitled design (6).png'),
