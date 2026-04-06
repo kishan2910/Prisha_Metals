@@ -19,25 +19,25 @@ const fadeUp = {
  */
 function HomeHero() {
   return (
-    <section className="overflow-hidden pt-[4.5rem]">
-      <div className="w-full">
-        <div className="overflow-hidden">
-          <div className="h-[calc(100vh-4.5rem)] w-full">
-            <motion.img
-              initial={{ opacity: 0, scale: 1.02 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-              src={IMAGE_PATHS.homeHero}
-              alt=""
-              className="h-full w-full object-cover object-center"
-              fetchPriority="high"
-              decoding="async"
-            />
-          </div>
+    <section className="relative overflow-hidden h-screen">
+      <div className="absolute inset-0 w-full h-full">
+        <div className="overflow-hidden h-full">
+          <motion.img
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+            src={IMAGE_PATHS.homeHero}
+            alt=""
+            className="h-full w-full object-cover object-center opacity-10"
+            fetchPriority="high"
+            decoding="async"
+          />
         </div>
       </div>
 
-      <div className="relative -mt-4 rounded-t-[1.75rem] bg-ink bg-gradient-to-b from-[#1f1f1f] to-ink pb-16 pt-14 shadow-[0_-12px_40px_-8px_rgba(0,0,0,0.15)] sm:-mt-6 sm:rounded-t-[2rem] sm:pb-20 sm:pt-16 md:pb-24">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ink/30 to-ink pointer-events-none" />
+
+      <div className="relative z-10 h-full flex items-center justify-center">
         <div className={PAGE_MAX}>
           <div className="mx-auto max-w-4xl">
           <motion.p
