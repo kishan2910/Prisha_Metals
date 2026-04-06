@@ -13,7 +13,7 @@ export function ContactPage() {
         image={IMAGE_PATHS.contactHero}
         eyebrow=""
         overlayClassName="bg-transparent"
-        imageClassName="object-cover object-center"
+        imageClassName="object-contain w-full h-full object-center"
       />
 
       {/* Section 1 — form first (task-focused), full width band */}

@@ -23,12 +23,12 @@ function HomeHero() {
       <div className="absolute inset-0 w-full h-full">
         <div className="overflow-hidden h-full">
           <motion.img
-            initial={{ opacity: 0, scale: 1.02 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ scale: 1.02 }}       // only animate scale if you want subtle motion
+            animate={{ scale: 1 }}
             transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
             src={IMAGE_PATHS.homeHero}
             alt=""
-            className="h-full w-full object-cover object-center opacity-10"
+            className="h-full w-full object-cover object-center opacity-90" // 20% visibility
             fetchPriority="high"
             decoding="async"
           />
