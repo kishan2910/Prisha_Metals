@@ -79,10 +79,6 @@ export function ContactPage() {
                     <a href={`tel:${SITE_CONTACT.phone.replace(/\s/g, '')}`} className="mt-1 block text-white/90 transition hover:text-gold">
                       {SITE_CONTACT.phone}
                     </a>
-                    <p className="mt-3 text-[10px] font-semibold uppercase tracking-widest text-white/45">Germany Sales Executive</p>
-                    <a href={`tel:${SITE_CONTACT.germanySalesPhone.replace(/\s/g, '')}`} className="mt-1 block text-white/90 transition hover:text-gold">
-                      {SITE_CONTACT.germanySalesPhone}
-                    </a>
                   </div>
                 </li>
                 <li className="flex gap-4">

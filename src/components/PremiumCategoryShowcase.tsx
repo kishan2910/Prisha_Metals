@@ -38,7 +38,7 @@ function LuxuryCategoryCard({
   layout: Layout;
   index: number;
 }) {
-  const { displayTitle } = getLuxuryCategoryCopy(category);
+  const { displayTitle, blurb } = getLuxuryCategoryCopy(category);
   const href = `/products/${toSlug(category.name)}`;
 
   const isCatalog = layout === 'catalog';
@@ -95,6 +95,11 @@ function LuxuryCategoryCard({
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
             <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.38em] text-luxury-gold sm:text-[11px]">Collection</p>
             <h3 className="font-serif text-2xl font-medium leading-tight tracking-tight text-white sm:text-3xl">{displayTitle}</h3>
+            <p
+              className={`mt-3 font-sans leading-relaxed text-white/72 ${isCatalog ? 'line-clamp-3 text-sm sm:text-[15px]' : 'line-clamp-2 text-xs sm:text-sm'}`}
+            >
+              {blurb}
+            </p>
           </div>
         </div>
       </Link>

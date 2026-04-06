@@ -4,7 +4,6 @@ export const SITE_TAGLINE = 'Engineered for excellence';
 
 export const SITE_CONTACT = {
   phone: '+91 8799051826',
-  germanySalesPhone: '+49 1575 8170716',
   email: 'sales@prishametalint.com',
   addressLines: [
     'Plot No 7, R S No 42/P1, Sadguru Industrial Park',

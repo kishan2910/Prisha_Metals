@@ -4,33 +4,27 @@ export type CatalogProductVariant = {
   slug: string;
   image: string;
   label: string;
+  dimensions: string;
   material: string;
+  finish: string;
+  weight: string;
   description: string;
 };
 
-function getLinePrefix(itemName: string): string {
-  const name = itemName.toLowerCase();
-  if (name.includes('mortise')) return 'PM-M';
-  if (name.includes('cabinet')) return 'PM-C';
-  if (name.includes('pull')) return 'PM-P';
-  if (name.includes('lock')) return 'PM-L';
-  if (name.includes('hinge')) return 'PM-H';
-  if (name.includes('shower')) return 'PM-S';
-  if (name.includes('knob')) return 'PM-K';
-  if (name.includes('viewer')) return 'PM-V';
-  return 'PM-X';
-}
+const SAMPLE_FINISHES = ['Satin brass', 'Polished chrome', 'Antique brass', 'Matte black PVD', 'Brushed nickel', 'Lacquered brass'];
 
-/** Build one display code per image (PM-M1, PM-M2, PM-C1 ...). */
+/** Build one “SKU row” per image; specs are placeholders until real data is wired. */
 export function getCatalogVariants(item: ProductItem): CatalogProductVariant[] {
-  const code = getLinePrefix(item.name);
   return item.images.map((image, i) => ({
     slug: `variant-${i + 1}`,
     image,
-    label: `${code}${i + 1}`,
-    material: 'Forged brass body; stainless/steel inserts where applicable.',
+    label: `${item.name} · ${i + 1}`,
+    dimensions: `${110 + (i % 6) * 12} × ${38 + (i % 4) * 6} × ${18 + (i % 3) * 4} mm (typical — confirm on order)`,
+    material: 'Forged brass body; stainless or steel inserts where specified',
+    finish: SAMPLE_FINISHES[i % SAMPLE_FINISHES.length],
+    weight: `${160 + i * 25} g (approx.)`,
     description:
-      'Specification values shown are indicative for catalogue preview. Final details are confirmed against approved drawings and production samples.',
+      'Dimensions, material, and finish are representative for catalogue presentation. Request a technical data sheet or drawing review for project-specific confirmation.',
   }));
 }
 
