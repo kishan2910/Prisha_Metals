@@ -6,31 +6,7 @@ import {defineConfig, loadEnv} from 'vite';
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
-    plugins: [
-      react(),
-      tailwindcss(),
-      {
-        name: 'contact-api-mock',
-        configureServer(server) {
-          server.middlewares.use((req, res, next) => {
-            if (req.url === '/api/contact' && req.method === 'POST') {
-              let body = '';
-              req.on('data', (chunk) => {
-                body += chunk;
-              });
-              req.on('end', () => {
-                // eslint-disable-next-line no-console
-                console.log('[contact-api] received:', body);
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({ status: 'ok' }));
-              });
-            } else {
-              next();
-            }
-          });
-        },
-      },
-    ],
+    plugins: [react(), tailwindcss()],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },

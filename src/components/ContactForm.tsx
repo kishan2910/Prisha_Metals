@@ -31,14 +31,25 @@ export function ContactForm({ variant = 'light', className = '' }: ContactFormPr
     setError(null);
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('https://formsubmit.co/ajax/sales@prishametalint.com', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, phone, message }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          message,
+          _subject: 'Website inquiry',
+          _captcha: 'false',
+        }),
       });
 
       if (!response.ok) {
-        throw new Error('Unable to send inquiry. Please try again.');
+        const errorBody = await response.json().catch(() => null);
+        throw new Error(errorBody?.message || 'Unable to send inquiry. Please try again.');
       }
 
       setSubmitted(true);

@@ -276,22 +276,22 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
       {
         name: 'Luxury Knob 01',
         pmPrefix: 'PM-LK',
-        images: [productImg(lk, 'PM 01', 'madhuram87922021656072688.png'), productImg(lk, 'PM 01', 'Untitled design.png')],
+        images: [productImg(lk, 'PM 01', 'main knob.png')],
       },
       {
         name: 'Luxury Knob 02',
         pmPrefix: 'PM-LK',
-        images: [productImg(lk, 'PM 02', 'madhuram62742341656071290.png'), productImg(lk, 'PM 02', 'Untitled design.png')],
+        images: [productImg(lk, 'PM 02', 'main knob.png')],
       },
       {
         name: 'Luxury Knob 03',
         pmPrefix: 'PM-LK',
-        images: [productImg(lk, 'PM 03', 'madhuram55263401656072656.png'), productImg(lk, 'PM 03', 'Untitled design.png')],
+        images: [productImg(lk, 'PM 03', 'main knob.png')],
       },
       {
         name: 'Luxury Knob 04',
         pmPrefix: 'PM-LK',
-        images: [productImg(lk, 'PM 04', 'madhuram40546241656071093.png'), productImg(lk, 'PM 04', 'Untitled design.png')],
+        images: [productImg(lk, 'PM 04', 'main knob.png')],
       },
     ],
   },
