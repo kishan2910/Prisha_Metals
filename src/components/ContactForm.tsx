@@ -31,7 +31,7 @@ export function ContactForm({ variant = 'light', className = '' }: ContactFormPr
     setError(null);
 
     try {
-      const response = await fetch('https://formsubmit.co/ajax/sales@prishametalint.com', {
+      const response = await fetch('https://formsubmit.co/ajax/163d0f398437e7a8281339933eefba26', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
