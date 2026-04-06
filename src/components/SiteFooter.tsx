@@ -15,7 +15,7 @@ export function SiteFooter() {
             </Link>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/75">{SITE_TAGLINE}.</p>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
-              Premium architectural hardware and precision components for architects, distributors, and OEM partners worldwide.
+              Premium architectural hardware and precision components engineered for modern architecture.
             </p>
           </div>
 

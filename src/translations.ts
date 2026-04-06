@@ -108,7 +108,7 @@ export const translations: Record<Language, Translation> = {
       aluminum: 'Aluminum',
     },
     whyChooseUs: {
-      title: 'Why Choose Prisha Metals',
+      title: 'Why Choose Prisha Metal',
       quality: 'Uncompromising Quality',
       qualityDesc: 'Every component undergoes rigorous testing to meet European standards.',
       precision: 'Precision Engineering',
@@ -124,9 +124,9 @@ export const translations: Record<Language, Translation> = {
       aerospace: 'Aerospace',
     },
     about: {
-      title: 'About Prisha Metals',
+      title: 'About Prisha Metal',
       overview: 'Company Overview',
-      overviewContent: 'Prisha Metals is a leading manufacturer of high-precision metal components, dedicated to engineering excellence and luxury design.',
+      overviewContent: 'Prisha Metal is a leading manufacturer of high-precision metal components, dedicated to engineering excellence and luxury design.',
       process: 'Manufacturing Process',
       processContent: 'Our facility utilizes advanced hot forging and precision machining to create components that are both beautiful and functional.',
       export: 'Export Focus',
@@ -181,7 +181,7 @@ export const translations: Record<Language, Translation> = {
       aluminum: 'Aluminium',
     },
     whyChooseUs: {
-      title: 'Warum Prisha Metals wählen',
+      title: 'Warum Prisha Metal wählen',
       quality: 'Kompromisslose Qualität',
       qualityDesc: 'Jede Komponente wird strengen Tests unterzogen, um europäischen Standards zu entsprechen.',
       precision: 'Präzisionstechnik',
@@ -197,9 +197,9 @@ export const translations: Record<Language, Translation> = {
       aerospace: 'Luft- und Raumfahrt',
     },
     about: {
-      title: 'Über Prisha Metals',
+      title: 'Über Prisha Metal',
       overview: 'Unternehmensübersicht',
-      overviewContent: 'Prisha Metals ist ein führender Hersteller von hochpräzisen Metallkomponenten, der sich technischer Exzellenz und luxuriösem Design verschrieben hat.',
+      overviewContent: 'Prisha Metal ist ein führender Hersteller von hochpräzisen Metallkomponenten, der sich technischer Exzellenz und luxuriösem Design verschrieben hat.',
       process: 'Herstellungsprozess',
       processContent: 'Unsere Anlage nutzt fortschrittliches Warmschmieden und Präzisionsbearbeitung, um Komponenten zu schaffen, die sowohl schön als auch funktional sind.',
       export: 'Exportfokus',

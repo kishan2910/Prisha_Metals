@@ -32,7 +32,7 @@ export function Navbar() {
     >
       <div className={PAGE_MAX}>
         <div className="flex h-[4.5rem] items-center justify-between gap-6">
-          <Link to="/" className="flex h-10 shrink-0 items-center" aria-label="Prisha Metals home">
+          <Link to="/" className="flex h-10 shrink-0 items-center" aria-label="Prisha Metal home">
             <img
               src={IMAGE_PATHS.logo}
               alt=""

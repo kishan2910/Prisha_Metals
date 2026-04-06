@@ -1,4 +1,4 @@
-export const SITE_NAME = 'Prisha Metals';
+export const SITE_NAME = 'Prisha Metal';
 
 export const SITE_TAGLINE = 'Engineered for excellence';
 

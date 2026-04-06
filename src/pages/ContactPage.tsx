@@ -50,14 +50,13 @@ export function ContactPage() {
             >
               <div className="flex items-center gap-3">
                 <Building2 className="h-8 w-8 text-gold" aria-hidden />
-                <h2 className="font-serif text-2xl font-medium sm:text-3xl">About Prisha Metals</h2>
+                <h2 className="font-serif text-2xl font-medium sm:text-3xl">About Prisha Metal</h2>
               </div>
               <p className="mt-6 font-sans text-sm leading-relaxed text-white/75">
-                We manufacture architectural brass hardware, bath fittings, glass fittings, and precision turned components from our facility in Jamnagar, Gujarat. Our focus is repeatable finishing,
-                dimensional control, and documentation that supports specifier and export workflows.
+                We specialize in manufacturing premium brass hardware and fittings designed to meet the demands of international wholesalers and distributors.
               </p>
               <p className="mt-4 font-sans text-sm leading-relaxed text-white/65">
-                Whether you need catalogue finishes, OEM labelling, or parts made strictly to drawing, we align sampling, batch consistency, and dispatch with your project timeline.
+                With a focus on consistency and efficiency, we deliver reliable bulk solutions at competitive value.
               </p>
             </motion.div>
 

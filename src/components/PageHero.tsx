@@ -24,7 +24,7 @@ export function PageHero({ title, subtitle, image }: PageHeroProps) {
           transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
           className="w-full"
         >
-          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold sm:text-xs">Prisha Metals</p>
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.35em] text-gold sm:text-xs">Prisha Metal</p>
           <h1 className="max-w-3xl font-sans text-3xl font-semibold tracking-tight text-white text-balance md:text-4xl lg:text-5xl">
             {title}
           </h1>

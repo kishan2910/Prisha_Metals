@@ -48,7 +48,7 @@ function AboutPage() {
   return (
     <>
       <Hero
-        title="About Prisha Metals"
+        title="About Prisha Metal"
         subtitle="Craftsmanship, finishing discipline, and engineering precision."
         image={IMAGE_PATHS.aboutHero}
         overlayClassName="bg-gradient-to-r from-ink/88 via-ink/50 to-ink/25"
