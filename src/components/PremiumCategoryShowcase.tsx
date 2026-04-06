@@ -67,6 +67,7 @@ function LuxuryCategoryCard({
             alt=""
             loading="lazy"
             className="h-full w-full object-cover transition-[transform,filter] duration-[850ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.07] group-hover:brightness-[1.03]"
+            decoding="async"
           />
 
           {/* Permanent bottom read for title legibility */}

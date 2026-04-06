@@ -16,11 +16,11 @@ export function getCatalogVariants(item: ProductItem): CatalogProductVariant[] {
   return item.images.map((image, i) => ({
     slug: `variant-${i + 1}`,
     image,
-    label: `${item.name} · ${i + 1}`,
-    material: 'Forged brass body; stainless or steel inserts where specified',
+    label: `${item.pmPrefix}-${String(i + 1).padStart(2, '0')}`,
+    material: 'Forged brass construction with stainless steel inserts',
     finish: 'Multiple finishes available',
     description:
-      'Specifications and finish options are representative for catalogue presentation. We offer customization per your project requirements. Request a technical data sheet or drawing review for project-specific confirmation.',
+      'Specifications and finish options are representative for catalogue presentation. We offer full customization per your project requirements. Request a technical data sheet or drawing review for project-specific confirmation.',
   }));
 }
 

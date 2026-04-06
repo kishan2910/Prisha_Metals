@@ -17,6 +17,7 @@ export function productImg(...segments: string[]): string {
 
 export type ProductItem = {
   name: string;
+  pmPrefix: string; // e.g., "PM-MH" for Mortise Handle
   images: string[];
 };
 
@@ -41,7 +42,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: productImg(ph, 'handel main.png'),
     items: [
       {
-        name: 'Mortise handle',
+        name: 'Mortise Handle',
+        pmPrefix: 'PM-MH',
         images: [
           productImg(ph, 'Mortise handle', 'Untitled design.png'),
           productImg(ph, 'Mortise handle', 'Untitled design (1).png'),
@@ -56,6 +58,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
       },
       {
         name: 'Cabinet Handle',
+        pmPrefix: 'PM-CH',
         images: [
           productImg(ph, 'Cabinet Handle', 'Untitled design.png'),
           productImg(ph, 'Cabinet Handle', 'Untitled design (1).png'),
@@ -68,6 +71,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
       },
       {
         name: 'Pull Handle',
+        pmPrefix: 'PM-PH',
         images: [
           productImg(ph, 'Pull Handle', 'Untitled design.png'),
           productImg(ph, 'Pull Handle', 'Untitled design (1).png'),
@@ -87,6 +91,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     items: [
       {
         name: 'Lock Body',
+        pmPrefix: 'PM-LB',
         images: [
           productImg(dl, 'Lock body', 'baby latch', 'madhuram52702461651581006.png'),
           productImg(dl, 'Lock body', 'cy body', 'madhuram11688681655531730.png'),
@@ -96,6 +101,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
       },
       {
         name: 'Cylinder Lock',
+        pmPrefix: 'PM-CL',
         images: [
           productImg(dl, 'Cylinder Lock', 'both side key cylinder', 'madhuram11341711651581213.png'),
           productImg(dl, 'Cylinder Lock', 'cylinder (1 side key knob)', 'madhuram50661421655531767.png'),
@@ -110,51 +116,60 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: productImg(ch, 'hinge main.png'),
     items: [
       {
-        name: 'PM-BHB - Brass Hinge Butt',
+        name: 'Brass Hinge Butt',
+        pmPrefix: 'PM-BHB',
         images: [
           productImg(ch, 'brass hinge butt', 'Untitled design.png'),
         ],
       },
       {
-        name: 'PM-BHR - Brass Hinge Railway',
+        name: 'Brass Hinge Railway',
+        pmPrefix: 'PM-BHR',
         images: [
           productImg(ch, 'brass Hinge railway', 'Untitled design.png'),
         ],
       },
       {
-        name: 'PM-BHBe - Brass Hinge Bearing',
+        name: 'Brass Hinge Bearing',
+        pmPrefix: 'PM-BHBe',
         images: [
           productImg(ch, 'brass hinge bearing', 'madhuram12817941651225889.jpg'),
         ],
       },
       {
-        name: 'PM-BHIT - Brass Hinge Bearing Italian Tips',
+        name: 'Brass Hinge Bearing Italian Tips',
+        pmPrefix: 'PM-BHIT',
         images: [productImg(ch, 'BRASS HINGE BEARING ITALIAN TIPS', 'Untitled design.png')],
       },
       {
-        name: 'PM-BHL - Brass Hinge L Locking',
+        name: 'Brass Hinge L Locking',
+        pmPrefix: 'PM-BHL',
         images: [
           productImg(ch, 'brass hinge L locking', 'Untitled design.png'),
         ],
       },
       {
-        name: 'PM-BHL90 - Brass Hinge L Locking 90',
+        name: 'Brass Hinge L Locking 90',
+        pmPrefix: 'PM-BHL90',
         images: [
           productImg(ch, 'brass hinge L locking 90', 'Untitled design.png'),
         ],
       },
       {
-        name: 'PM-BHZ - Brass Hinge Z',
+        name: 'Brass Hinge Z',
+        pmPrefix: 'PM-BHZ',
         images: [productImg(ch, 'brass hinge Z', 'Untitled design.png')],
       },
       {
-        name: 'PM-BHO-01 - Brass Overlay Hinge',
+        name: 'Brass Overlay Hinge',
+        pmPrefix: 'PM-BHO',
         images: [
           productImg(ch, 'brass overlay hinge', 'full overlay.jpg'),
         ],
       },
       {
-        name: 'PM-BHW - Brass Hinge W Locking',
+        name: 'Brass Hinge W Locking',
+        pmPrefix: 'PM-BHW',
         images: [productImg(ch, 'brass hinge  W locking', 'Untitled design.png')],
       },
     ],
@@ -164,7 +179,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: productImg(bf, 'bath main.png'),
     items: [
       {
-        name: 'PM-PWC - Pillar Cock (Wash Basin)',
+        name: 'Pillar Cock (Wash Basin)',
+        pmPrefix: 'PM-PWC',
         images: [
           productImg(bf, 'piller cock (wash basin)', 'Untitled design.png'),
           productImg(bf, 'piller cock (wash basin)', 'Untitled design (1).png'),
@@ -173,7 +189,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         ],
       },
       {
-        name: 'PM-SPC - Swan Neck Pillar Cock',
+        name: 'Swan Neck Pillar Cock',
+        pmPrefix: 'PM-SPC',
         images: [
           productImg(bf, 'Swan neck (Sink) Piller cock', '1.png'),
           productImg(bf, 'Swan neck (Sink) Piller cock', 'Untitled design.png'),
@@ -181,11 +198,13 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         ],
       },
       {
-        name: 'PM-BC - Bib Cock',
+        name: 'Bib Cock',
+        pmPrefix: 'PM-BC',
         images: [productImg(bf, 'bib cock', 'Untitled design (1).png')],
       },
       {
-        name: 'PM-HS-01 - Hand Shower',
+        name: 'Hand Shower',
+        pmPrefix: 'PM-HS',
         images: [
           productImg(bf, 'Multi flow hand SHOWER (including chain + abs hook)', '180.jpg'),
           productImg(bf, 'Multi flow hand SHOWER (including chain + abs hook)', '183.jpg'),
@@ -193,26 +212,31 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         ],
       },
       {
-        name: 'PM-SHS-01 - Shower Head Square',
+        name: 'Shower Head Square',
+        pmPrefix: 'PM-SHS',
         images: [productImg(bf, 'Shower Head square', 'Untitled design.png')],
       },
       {
-        name: 'PM-TPH-01 - Toilet Paper Holder',
+        name: 'Toilet Paper Holder',
+        pmPrefix: 'PM-TPH',
         images: [productImg(bf, 'Toilet paper holder', 'Untitled design.png')],
       },
       {
-        name: 'PM-TR-01 - Towel Rod',
+        name: 'Towel Rod',
+        pmPrefix: 'PM-TR',
         images: [
           productImg(bf, 'Towel Rod', 'madhuram97284061655214772.png'),
           productImg(bf, 'Towel Rod', 'Untitled design.png'),
         ],
       },
       {
-        name: 'PM-TR-02 - Towel Rack',
+        name: 'Towel Rack',
+        pmPrefix: 'PM-TRK',
         images: [productImg(bf, 'Towel Rack', 'Untitled design.png')],
       },
       {
-        name: 'PM-FLD-01 - Full Brass Liquid Dispenser',
+        name: 'Full Brass Liquid Dispenser',
+        pmPrefix: 'PM-FLD',
         images: [
           productImg(bf, 'Full Brass Liquid Dispenser', 'madhuram15150851655370039.jpg'),
           productImg(bf, 'Full Brass Liquid Dispenser', 'Untitled design.png'),
@@ -224,12 +248,13 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     name: 'GLASS HARDWARES',
     image: productImg(gh, 'glass main.png'),
     items: [
-      { name: 'PM-DB - Brass D Bracket', images: [productImg(gh, 'Brass D Bracket', 'madhuram58621061650547145.png')] },
-      { name: 'PM-FB - Brass F Bracket', images: [productImg(gh, 'Brass F Bracket', 'madhuram63854271650547192.png')] },
-      { name: 'PM-SB - Brass Square Bracket', images: [productImg(gh, 'Brass Square Bracket', 'madhuram59115401650547276.png')] },
-      { name: 'PM-MS - Brass Mirror Screw', images: [productImg(gh, 'Brass Mirror Screw', 'madhuram45206171650547239.png')] },
+      { name: 'Brass D Bracket', pmPrefix: 'PM-DB', images: [productImg(gh, 'Brass D Bracket', 'madhuram58621061650547145.png')] },
+      { name: 'Brass F Bracket', pmPrefix: 'PM-FB', images: [productImg(gh, 'Brass F Bracket', 'madhuram63854271650547192.png')] },
+      { name: 'Brass Square Bracket', pmPrefix: 'PM-SB', images: [productImg(gh, 'Brass Square Bracket', 'madhuram59115401650547276.png')] },
+      { name: 'Brass Mirror Screw', pmPrefix: 'PM-MS', images: [productImg(gh, 'Brass Mirror Screw', 'madhuram45206171650547239.png')] },
       {
-        name: 'PM-MC - Brass Mirror Cap',
+        name: 'Brass Mirror Cap',
+        pmPrefix: 'PM-MC',
         images: [
           productImg(gh, 'Brass Mirror Cap', 'madhuram35872391650965243.png'),
           productImg(gh, 'Brass Mirror Cap', 'madhuram39994161650964236.png'),
@@ -249,19 +274,23 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: productImg(lk, 'knob main.png'),
     items: [
       {
-        name: 'PM-LK-01',
+        name: 'Luxury Knob 01',
+        pmPrefix: 'PM-LK',
         images: [productImg(lk, 'PM 01', 'madhuram87922021656072688.png'), productImg(lk, 'PM 01', 'Untitled design.png')],
       },
       {
-        name: 'PM-LK-02',
+        name: 'Luxury Knob 02',
+        pmPrefix: 'PM-LK',
         images: [productImg(lk, 'PM 02', 'madhuram62742341656071290.png'), productImg(lk, 'PM 02', 'Untitled design.png')],
       },
       {
-        name: 'PM-LK-03',
+        name: 'Luxury Knob 03',
+        pmPrefix: 'PM-LK',
         images: [productImg(lk, 'PM 03', 'madhuram55263401656072656.png'), productImg(lk, 'PM 03', 'Untitled design.png')],
       },
       {
-        name: 'PM-LK-04',
+        name: 'Luxury Knob 04',
+        pmPrefix: 'PM-LK',
         images: [productImg(lk, 'PM 04', 'madhuram40546241656071093.png'), productImg(lk, 'PM 04', 'Untitled design.png')],
       },
     ],
@@ -271,7 +300,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: productImg(dv, 'door main.png'),
     items: [
       {
-        name: 'Door viewers',
+        name: 'Door Viewer',
+        pmPrefix: 'PM-DV',
         images: [productImg(dv, 'madhuram38265231650545453.png'), productImg(dv, 'Untitled design.png')],
       },
     ],
@@ -281,7 +311,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
     image: productImg(bc, 'brass main.png'),
     items: [
       {
-        name: 'Custom turned components as per drawing',
+        name: 'Custom Turned Components',
+        pmPrefix: 'PM-CTC',
         images: [
           productImg(bc, '104036962.jpg'),
           productImg(bc, '1048795142.jpg'),

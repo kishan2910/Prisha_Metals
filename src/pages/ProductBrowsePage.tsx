@@ -109,7 +109,13 @@ export function ProductBrowsePage() {
                 transition={{ duration: 0.5 }}
                 className="overflow-hidden rounded-2xl bg-white shadow-card ring-1 ring-ink/8"
               >
-                <img src={variant.image} alt="" className="aspect-square w-full object-cover sm:aspect-[4/5]" />
+                <img 
+                  src={variant.image} 
+                  alt="" 
+                  className="aspect-square w-full object-contain sm:aspect-[4/5] bg-white" 
+                  loading="eager"
+                  decoding="async"
+                />
               </motion.div>
 
               <motion.div
@@ -139,11 +145,32 @@ export function ProductBrowsePage() {
                 <div className="space-y-4 rounded-xl border border-ink/10 bg-white p-5 font-sans text-sm shadow-sm">
                   <div>
                     <h3 className="text-[11px] font-semibold uppercase tracking-wider text-ink/45 mb-3">Available Finishes</h3>
-                    <p className="text-ink/85 leading-relaxed">SSM – Satin Stainless / Matt Finish, ZB – Zinc Black, ABM – Antique Brass Matt, PVDR – PVD Rose Gold, PVDG – PVD Gold</p>
+                    <ul className="space-y-2 text-ink/85">
+                      <li className="flex items-start gap-2">
+                        <span className="text-gold mt-1">•</span>
+                        <span>SSM – Satin Stainless / Matt Finish</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-gold mt-1">•</span>
+                        <span>ZB – Zinc Black</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-gold mt-1">•</span>
+                        <span>ABM – Antique Brass Matt</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-gold mt-1">•</span>
+                        <span>PVDR – PVD Rose Gold</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-gold mt-1">•</span>
+                        <span>PVDG – PVD Gold</span>
+                      </li>
+                    </ul>
                   </div>
                   <div>
-                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-ink/45 mb-3">Customization</h3>
-                    <p className="text-ink/85 leading-relaxed">Customization available. Contact us for project-specific requirements.</p>
+                    <h3 className="text-[11px] font-semibold uppercase tracking-wider text-ink/45 mb-3">Material & Customization</h3>
+                    <p className="text-ink/85 leading-relaxed">Forged brass construction with stainless steel inserts. Full customization available. Contact us for project-specific requirements.</p>
                   </div>
                 </div>
 
@@ -178,7 +205,7 @@ export function ProductBrowsePage() {
       <>
         <PageHero
           title={item.name}
-          subtitle="Select a piece to view specifications and available finishes."
+          subtitle={`${item.images.length} variant${item.images.length === 1 ? '' : 's'} — select to view specifications and finishes.`}
           image={item.images[0] ?? category.image}
         />
         <section className="bg-mesh-industrial pb-20 pt-10">
@@ -202,8 +229,9 @@ export function ProductBrowsePage() {
                       <img
                         src={v.image}
                         alt=""
-                        className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-105"
+                        className="h-full w-full object-contain transition duration-700 ease-out group-hover:scale-105 bg-white"
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div className="p-4">
@@ -226,7 +254,7 @@ export function ProductBrowsePage() {
     <>
       <PageHero
         title={category.name}
-        subtitle="Choose a product line to browse individual pieces and specifications."
+        subtitle={`Browse our ${category.items.length} product lines below.`}
         image={category.image}
       />
       <section className="bg-mesh-industrial pb-24 pt-10">
@@ -249,19 +277,25 @@ export function ProductBrowsePage() {
                     to={linePath}
                     className="group flex flex-col overflow-hidden rounded-2xl border border-ink/10 bg-white shadow-card transition duration-300 hover:-translate-y-1 hover:border-gold/25 hover:shadow-premium sm:flex-row"
                   >
-                    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden sm:aspect-auto sm:h-auto sm:w-[42%] sm:min-h-[200px]">
+                    <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden sm:aspect-auto sm:h-auto sm:w-[42%] sm:min-h-[200px] bg-white">
                       {thumb ? (
-                        <img src={thumb} alt="" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+                        <img 
+                          src={thumb} 
+                          alt="" 
+                          className="h-full w-full object-contain transition duration-700 group-hover:scale-105" 
+                          loading="eager"
+                          decoding="async"
+                        />
                       ) : null}
                     </div>
                     <div className="flex flex-1 flex-col justify-center p-6 sm:p-8">
                       <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-gold">Product line</p>
                       <h2 className="mt-2 font-serif text-2xl font-medium text-ink group-hover:text-gold">{line.name}</h2>
                       <p className="mt-3 font-sans text-sm text-ink/55">
-                        {line.images.length} reference piece{line.images.length === 1 ? '' : 's'} — open to browse and compare.
+                        {line.images.length} variant{line.images.length === 1 ? '' : 's'} available
                       </p>
                       <span className="mt-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-ink/70 group-hover:text-gold">
-                        Browse line
+                        View variants
                         <ChevronRight className="h-4 w-4 transition group-hover:translate-x-0.5" aria-hidden />
                       </span>
                     </div>
